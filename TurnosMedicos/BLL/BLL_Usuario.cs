@@ -29,5 +29,22 @@ namespace BLL
             usuario.HashPassword = HashHelper.GenerarHash(usuario.HashPassword);
             dal_usuario.AgregarUsuario(usuario);
         }
+
+        public void ModificarUsuario(BE_Usuario usuario)
+        {
+            dal_usuario.ModificarUsuario(usuario);
+        }
+
+        public void EliminarUsuario(int id)
+        {
+            dal_usuario.EliminarUsuario(id);
+        }
+
+        public void ResetearPassword(int id, string nuevoPass)
+        {
+            nuevoPass = HashHelper.GenerarHash(nuevoPass);
+            
+            dal_usuario.ResetearContrasena(id, nuevoPass);
+        }
     }
 }
