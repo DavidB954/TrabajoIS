@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnResetPass = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -63,37 +63,39 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Password ";
             // 
-            // button1
+            // btnAgregar
             // 
-            this.button1.Image = global::GestionTurnosMedicos.Properties.Resources.Nuevo;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(35, 258);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 35);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAgregar.Image = global::GestionTurnosMedicos.Properties.Resources.Nuevo;
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregar.Location = new System.Drawing.Point(35, 258);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(101, 35);
+            this.btnAgregar.TabIndex = 5;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button2
+            // btnResetPass
             // 
-            this.button2.Location = new System.Drawing.Point(324, 258);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 35);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Reiniciar Password";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnResetPass.Location = new System.Drawing.Point(324, 258);
+            this.btnResetPass.Name = "btnResetPass";
+            this.btnResetPass.Size = new System.Drawing.Size(101, 35);
+            this.btnResetPass.TabIndex = 7;
+            this.btnResetPass.Text = "Reiniciar Password";
+            this.btnResetPass.UseVisualStyleBackColor = true;
+            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
-            // button3
+            // btnEliminar
             // 
-            this.button3.Image = global::GestionTurnosMedicos.Properties.Resources.Delete;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(481, 258);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(101, 35);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEliminar.Image = global::GestionTurnosMedicos.Properties.Resources.Delete;
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(481, 258);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(101, 35);
+            this.btnEliminar.TabIndex = 8;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvUsuarios
             // 
@@ -109,14 +111,15 @@
             this.txtNombreUsuario.Location = new System.Drawing.Point(162, 32);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(181, 20);
-            this.txtNombreUsuario.TabIndex = 6;
+            this.txtNombreUsuario.TabIndex = 1;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(162, 181);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(181, 20);
-            this.txtPassword.TabIndex = 7;
+            this.txtPassword.TabIndex = 4;
             // 
             // label3
             // 
@@ -141,14 +144,15 @@
             this.txtApellido.Location = new System.Drawing.Point(162, 83);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(181, 20);
-            this.txtApellido.TabIndex = 10;
+            this.txtApellido.TabIndex = 2;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(162, 133);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(181, 20);
-            this.txtEmail.TabIndex = 11;
+            this.txtEmail.TabIndex = 3;
+            this.txtEmail.Text = " ";
             // 
             // Usuarios
             // 
@@ -164,12 +168,13 @@
             // 
             this.btnModificar.Image = global::GestionTurnosMedicos.Properties.Resources.Edit;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(174, 258);
+            this.btnModificar.Location = new System.Drawing.Point(178, 258);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(101, 35);
-            this.btnModificar.TabIndex = 13;
+            this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // frmUsuario
             // 
@@ -185,9 +190,9 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtNombreUsuario);
             this.Controls.Add(this.dgvUsuarios);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnResetPass);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmUsuario";
@@ -203,9 +208,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnResetPass;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.TextBox txtNombreUsuario;
         private System.Windows.Forms.TextBox txtPassword;

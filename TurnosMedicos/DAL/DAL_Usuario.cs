@@ -82,6 +82,50 @@ namespace DAL
 
         }
 
+        public void ModificarUsuario(BE_Usuario Usuario)
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("Update Usuario SET Nombre=@nombre, Apellido=@apellido, Email=@email WHERE IdUsuario=@id", conexion);
+
+                comando.Parameters.AddWithValue("@id", Usuario.IdUsuario);
+                comando.Parameters.AddWithValue("@nombre", Usuario.Nombre);
+                comando.Parameters.AddWithValue("@apellido", Usuario.Apellido);
+                comando.Parameters.AddWithValue("@email", Usuario.Email);
+
+                comando.ExecuteNonQuery();
+            }
+        }
+
+        public void EliminarUsuario(int id)
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+
+                SqlCommand comando = new SqlCommand("Delete from Usuario WHERE IdUsuario = @id", conexion);
+
+                comando.Parameters.AddWithValue("@id", id);
+
+                comando.ExecuteNonQuery();
+            }
+        }
+
+        public void ResetearContrasena(int id, string nuevaPass)
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+                SqlCommand comando = new SqlCommand("Update Usuario SET HashPassword=@nuevoHash WHERE IdUsuario=@id", conexion);
+
+                comando.Parameters.AddWithValue("@id", id);
+                comando.Parameters.AddWithValue("@nuevoHash", nuevaPass);
+
+                comando.ExecuteNonQuery();
+            }
+        }
 
     }
 }
