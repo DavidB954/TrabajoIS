@@ -26,6 +26,7 @@ namespace BLL
                     constructor.Append(b.ToString("x2"));
                 }
 
+
                 //Devuelve el hash como string.
                 return constructor.ToString();
             }

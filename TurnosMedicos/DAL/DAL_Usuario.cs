@@ -1,7 +1,9 @@
 ﻿using BE;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,29 +14,90 @@ namespace DAL
     {
         DAL_Conexion conex = new DAL_Conexion();
 
-        public BE_Usuario VerificarUsuario(string Email, string Password)
+        public BE_Usuario VerificarUsuario(string Email, string Password, out string mensaje)
         {
-                using (SqlConnection conexion = conex.ObtenerConexion())
+             mensaje = "";
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+
+                //Buscamos por mail
+
+                SqlCommand comando = new SqlCommand("Select IdUsuario, Nombre, HashPassword, Activo, IntentosFallidos FROM Usuario WHERE Email=@email", conexion);
+
+                comando.Parameters.AddWithValue("@email", Email);
+
+                SqlDataReader lector = comando.ExecuteReader();
+
+                if (!lector.Read()) //Usuario no existe
                 {
-                    conexion.Open();
-
-                    SqlCommand comando = new SqlCommand("Select IdUsuario, Nombre FROM Usuario WHERE Email = @email AND HashPassword=@password", conexion);
-
-                    comando.Parameters.AddWithValue("@email", Email);
-                    comando.Parameters.AddWithValue("@password", Password);
-
-                    SqlDataReader lector = comando.ExecuteReader();
-
-                    if (lector.Read())
-                    {
-                       BE_Usuario usuario = new BE_Usuario();
-                       usuario.IdUsuario = lector.GetInt32(0);
-                       usuario.Nombre = lector.GetString(1);
-                        return usuario;       
-                    }                                       
+                    mensaje = "Usuario no encontrado.";
+                    return null;
                 }
-                return null;
 
+                int id = lector.GetInt32(0);
+                string nombre = lector.GetString(1);
+                string hashPassword = lector.GetString(2);
+                bool activo = lector.GetBoolean(3);
+                int intentosFallidos = lector.GetInt32(4);
+
+                lector.Close();
+
+                //verifica si esta activo
+                if (!activo)
+                {
+                    mensaje = "Usuario bloqueado por demasiados intentos fallidos. Contacte Administrador";
+                    return null;
+                }
+
+                //validamos la contraseña 
+
+                if (hashPassword == Password)
+                {
+                    if (intentosFallidos > 0)
+                    {
+                        SqlCommand cmdReset = new SqlCommand("Update Usuario SET IntentosFallidos=0 WHERE IdUsuario=@id", conexion);
+
+                        cmdReset.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+                        cmdReset.ExecuteNonQuery();
+                    }
+
+                    mensaje = "Login exitoso.";
+
+                    return new BE_Usuario
+                    {
+                        IdUsuario = id,
+                        Nombre = nombre
+                    };
+                }
+                else //login incorrecto
+                {
+                    intentosFallidos++;
+
+                    bool act = intentosFallidos < 3;
+
+                    SqlCommand updComando = new SqlCommand("Update Usuario Set IntentosFallidos=@intentos, Activo=@activo WHERE IdUsuario=@id", conexion);
+
+                    updComando.Parameters.Add("@intentos", SqlDbType.Int).Value = intentosFallidos;
+                    updComando.Parameters.Add("@activo", SqlDbType.Bit).Value = act;
+                    updComando.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+                    updComando.ExecuteNonQuery();
+
+                    if (!act)
+                    {
+                        mensaje = "Usuario bloqueado por demasiados intentos fallidos. Contacte Administrador";
+                    }
+                    else
+                    {
+                        mensaje = $"Contraseña incorrecta. Intentos restantes: {3 - intentosFallidos}";
+                    }
+
+                    return null;
+
+                }
+            }
         }
 
         public List<BE_Usuario> ListaUsuario()

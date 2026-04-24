@@ -26,7 +26,9 @@ namespace GestionTurnosMedicos
         {
             try
             {
-                BE_Usuario usuario = bll_Usu.VerificarUsuario(txtUsuario.Text, txtPassword.Text);
+                string mensaje; 
+
+                BE_Usuario usuario = bll_Usu.VerificarUsuario(txtUsuario.Text, txtPassword.Text, out mensaje);
 
                 if (usuario != null)
                 {
@@ -39,7 +41,7 @@ namespace GestionTurnosMedicos
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o Contraseña incorrectos");
+                   
                     txtPassword.Clear();
                     txtUsuario.Clear();
                 }
