@@ -12,11 +12,11 @@ namespace BLL
     {
         DAL_Usuario dal_usuario = new DAL_Usuario();
 
-        public BE_Usuario VerificarUsuario(string email, string pass)
+        public BE_Usuario VerificarUsuario(string email, string pass, out string mensaje)
         {
             string Hash = HashHelper.GenerarHash(pass);
-
-            return dal_usuario.VerificarUsuario(email, Hash);
+           
+            return dal_usuario.VerificarUsuario(email, Hash, out mensaje);
         }
 
         public List<BE_Usuario> ListaUsuarios()

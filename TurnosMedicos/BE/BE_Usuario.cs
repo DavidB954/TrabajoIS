@@ -20,6 +20,8 @@ namespace BE
 
         public string HashPassword { get; set; }
 
+        public int IntentosFallidos { get; set; }   
+
         public bool Activo { get; set; }
 
     }
