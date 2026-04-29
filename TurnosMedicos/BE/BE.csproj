@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccionBitacora.cs" />
+    <Compile Include="BE_Bitacora.cs" />
+    <Compile Include="BE_LoginResultado.cs" />
     <Compile Include="BE_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -51,11 +51,12 @@ namespace GestionTurnosMedicos
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbrirFormularios<frmMenu>();
+            AbrirFormularios<frmBitacora>();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Sesion.Instancia().CerrarSesion();
             Application.Exit();
         }
 

@@ -1,0 +1,154 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\windowsformsapp1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|solutionrelative:windowsformsapp1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\windowsformsapp1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|solutionrelative:windowsformsapp1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\login\\windowsformsapp1\\windowsformsapp1\\frmmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|solutionrelative:windowsformsapp1\\frmmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\login\\windowsformsapp1\\windowsformsapp1\\frmmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8AF82E5A-CC9B-4C6C-A5F6-91B2AFCB1F31}|WindowsFormsApp1\\Login.csproj|solutionrelative:windowsformsapp1\\frmmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CABAE669-523D-45A8-83A3-F9425FAAEA3A}|BE\\BE.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\login\\windowsformsapp1\\be\\be_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CABAE669-523D-45A8-83A3-F9425FAAEA3A}|BE\\BE.csproj|solutionrelative:be\\be_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B02A99-678F-45BB-A4BE-6C490E437525}|DAL\\DAL.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\login\\windowsformsapp1\\dal\\dal_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B02A99-678F-45BB-A4BE-6C490E437525}|DAL\\DAL.csproj|solutionrelative:dal\\dal_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9AC330F-299E-4F52-9D29-524B4F246153}|BLL\\BLL.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\login\\windowsformsapp1\\bll\\bll_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9AC330F-299E-4F52-9D29-524B4F246153}|BLL\\BLL.csproj|solutionrelative:bll\\bll_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CABAE669-523D-45A8-83A3-F9425FAAEA3A}|BE\\BE.csproj|C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\be\\be_loginresultado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CABAE669-523D-45A8-83A3-F9425FAAEA3A}|BE\\BE.csproj|solutionrelative:be\\be_loginresultado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmMenu.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmMenu.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\frmMenu.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmMenu.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\frmMenu.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAADgvxMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T15:20:50.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmMenu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmMenu.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\frmMenu.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmMenu.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp1\\frmMenu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T15:20:48.757Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BE_Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\BE\\BE_Usuario.cs",
+              "RelativeDocumentMoniker": "BE\\BE_Usuario.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\BE\\BE_Usuario.cs",
+              "RelativeToolTip": "BE\\BE_Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T14:25:28.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BE_LoginResultado.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\BE\\BE_LoginResultado.cs",
+              "RelativeDocumentMoniker": "BE\\BE_LoginResultado.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\BE\\BE_LoginResultado.cs",
+              "RelativeToolTip": "BE\\BE_LoginResultado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-25T17:17:00.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DAL_Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\DAL\\DAL_Usuario.cs",
+              "RelativeDocumentMoniker": "DAL\\DAL_Usuario.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\DAL\\DAL_Usuario.cs",
+              "RelativeToolTip": "DAL\\DAL_Usuario.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAAAKgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T20:34:16.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmLogin.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmLogin.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmLogin.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\frmLogin.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAArwCMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T20:30:07.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmLogin.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmLogin.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\WindowsFormsApp1\\frmLogin.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp1\\frmLogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T20:31:37.398Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BLL_Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\BLL\\BLL_Usuario.cs",
+              "RelativeDocumentMoniker": "BLL\\BLL_Usuario.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\Login\\WindowsFormsApp1\\BLL\\BLL_Usuario.cs",
+              "RelativeToolTip": "BLL\\BLL_Usuario.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAqwBoAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T14:25:55.897Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BE/BE.csproj" Id="cabae669-523d-45a8-83a3-f9425faaea3a" />
+  <Project Path="BLL/BLL.csproj" Id="b9ac330f-299e-4f52-9d29-524b4f246153" />
+  <Project Path="DAL/DAL.csproj" Id="68b02a99-678f-45bb-a4be-6c490e437525" />
+  <Project Path="WindowsFormsApp1/Login.csproj" Id="8af82e5a-cc9b-4c6c-a5f6-91b2afcb1f31" />
+</Solution>

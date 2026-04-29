@@ -90,7 +90,7 @@ namespace GestionTurnosMedicos
                 Usuario.Nombre = txtNombreUsuario.Text;
                 Usuario.Apellido = txtApellido.Text;
                 Usuario.Email = txtEmail.Text;
-
+                Usuario.Activo = Convert.ToBoolean(Fila.Cells["Activo"].Value);
                 bll_usuario.ModificarUsuario(Usuario);
 
                 CargarUsuarios();
@@ -124,19 +124,19 @@ namespace GestionTurnosMedicos
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-                if (idSeleccionado == null)
-                {
-                    MessageBox.Show("Por favor seleccione el usuario a eliminar");
-                    return;
-                }
+            if (idSeleccionado == null)
+            {
+                MessageBox.Show("Por favor seleccione el usuario a eliminar");
+                return;
+            }
 
-                else
-                {
-                    var fila = dgvUsuarios.SelectedRows[0];
-                    int id = Convert.ToInt32(fila.Cells["IdUsuario"].Value);
-                    bll_usuario.EliminarUsuario(id);
-                    CargarUsuarios();
-                    LimpiarCampos();
+            else
+            {
+                var fila = dgvUsuarios.SelectedRows[0];
+                int id = Convert.ToInt32(fila.Cells["IdUsuario"].Value);
+                bll_usuario.EliminarUsuario(id);
+                CargarUsuarios();
+                LimpiarCampos();
             }
         }
 
@@ -149,15 +149,19 @@ namespace GestionTurnosMedicos
             }
             else
             {
-                var fila = dgvUsuarios.SelectedRows[0];
-                int id = Convert.ToInt32(fila.Cells["IdUsuario"].Value);
-
-                string nuevaPass = txtPassword.Text;
-
-                bll_usuario.ResetearPassword(id, nuevaPass);
-
-                CargarUsuarios();
-                LimpiarCampos();
+                if (!string.IsNullOrEmpty(txtPassword.Text))
+                {
+                    var fila = dgvUsuarios.SelectedRows[0];
+                    int id = Convert.ToInt32(fila.Cells["IdUsuario"].Value);
+                    string nuevaPass = txtPassword.Text;
+                    bll_usuario.ResetearPassword(id, nuevaPass);
+                    CargarUsuarios();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese la nueva contraseña");
+                }
             }
         }
     }
