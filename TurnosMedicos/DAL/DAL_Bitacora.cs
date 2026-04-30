@@ -72,5 +72,9 @@ namespace DAL
             return ListaBitacora;
         }
 
+        public void FiltrarBitacora(DateTime? Desde, DateTime? Hasta, int? idUsuario, string Modulo, string Ip)
+        {
+           
+        }
     }
 }

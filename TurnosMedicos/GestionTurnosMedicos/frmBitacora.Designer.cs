@@ -31,9 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucCboUsuario1 = new GestionTurnosMedicos.ucCboUsuario();
             this.txtBuscarPorIP = new System.Windows.Forms.TextBox();
             this.cboModulo = new System.Windows.Forms.ComboBox();
-            this.cboUsuario = new System.Windows.Forms.ComboBox();
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.btnLimpiarFiltros = new System.Windows.Forms.Button();
@@ -46,9 +46,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dgvBitacora = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtDescripcion = new System.Windows.Forms.RichTextBox();
+            this.txtNombreHost = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.lblTotalRegistros = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.txtModulo = new System.Windows.Forms.TextBox();
             this.txtAccion = new System.Windows.Forms.TextBox();
@@ -89,9 +91,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ucCboUsuario1);
             this.panel1.Controls.Add(this.txtBuscarPorIP);
             this.panel1.Controls.Add(this.cboModulo);
-            this.panel1.Controls.Add(this.cboUsuario);
             this.panel1.Controls.Add(this.dtpHasta);
             this.panel1.Controls.Add(this.dtpDesde);
             this.panel1.Controls.Add(this.btnLimpiarFiltros);
@@ -107,6 +109,13 @@
             this.panel1.Size = new System.Drawing.Size(971, 111);
             this.panel1.TabIndex = 2;
             // 
+            // ucCboUsuario1
+            // 
+            this.ucCboUsuario1.Location = new System.Drawing.Point(355, 58);
+            this.ucCboUsuario1.Name = "ucCboUsuario1";
+            this.ucCboUsuario1.Size = new System.Drawing.Size(110, 29);
+            this.ucCboUsuario1.TabIndex = 13;
+            // 
             // txtBuscarPorIP
             // 
             this.txtBuscarPorIP.Location = new System.Drawing.Point(654, 61);
@@ -121,14 +130,6 @@
             this.cboModulo.Name = "cboModulo";
             this.cboModulo.Size = new System.Drawing.Size(121, 21);
             this.cboModulo.TabIndex = 11;
-            // 
-            // cboUsuario
-            // 
-            this.cboUsuario.FormattingEnabled = true;
-            this.cboUsuario.Location = new System.Drawing.Point(355, 61);
-            this.cboUsuario.Name = "cboUsuario";
-            this.cboUsuario.Size = new System.Drawing.Size(121, 21);
-            this.cboUsuario.TabIndex = 10;
             // 
             // dtpHasta
             // 
@@ -173,6 +174,7 @@
             this.btnBuscar.TabIndex = 6;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label8
             // 
@@ -240,12 +242,15 @@
             this.dgvBitacora.ReadOnly = true;
             this.dgvBitacora.Size = new System.Drawing.Size(971, 226);
             this.dgvBitacora.TabIndex = 3;
+            this.dgvBitacora.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBitacora_CellClick);
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtDescripcion);
+            this.panel2.Controls.Add(this.txtNombreHost);
+            this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.lblTotalRegistros);
             this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.txtDescripcion);
             this.panel2.Controls.Add(this.txtIP);
             this.panel2.Controls.Add(this.txtModulo);
             this.panel2.Controls.Add(this.txtAccion);
@@ -260,8 +265,33 @@
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(27, 490);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(968, 202);
+            this.panel2.Size = new System.Drawing.Size(981, 227);
             this.panel2.TabIndex = 4;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(700, 59);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(246, 91);
+            this.txtDescripcion.TabIndex = 17;
+            this.txtDescripcion.Text = "";
+            // 
+            // txtNombreHost
+            // 
+            this.txtNombreHost.Location = new System.Drawing.Point(459, 152);
+            this.txtNombreHost.Name = "txtNombreHost";
+            this.txtNombreHost.ReadOnly = true;
+            this.txtNombreHost.Size = new System.Drawing.Size(212, 20);
+            this.txtNombreHost.TabIndex = 16;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(364, 159);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(89, 13);
+            this.label17.TabIndex = 15;
+            this.label17.Text = "Nombre del Host:";
             // 
             // lblTotalRegistros
             // 
@@ -274,19 +304,11 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(798, 177);
+            this.label16.Location = new System.Drawing.Point(767, 177);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(76, 13);
             this.label16.TabIndex = 13;
             this.label16.Text = "Total registros:";
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Location = new System.Drawing.Point(459, 152);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.ReadOnly = true;
-            this.txtDescripcion.Size = new System.Drawing.Size(212, 20);
-            this.txtDescripcion.TabIndex = 12;
             // 
             // txtIP
             // 
@@ -331,7 +353,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(373, 47);
+            this.label15.Location = new System.Drawing.Point(364, 47);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(45, 13);
             this.label15.TabIndex = 6;
@@ -340,7 +362,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(373, 103);
+            this.label14.Location = new System.Drawing.Point(364, 103);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(20, 13);
             this.label14.TabIndex = 5;
@@ -349,7 +371,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(373, 159);
+            this.label13.Location = new System.Drawing.Point(697, 43);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(66, 13);
             this.label13.TabIndex = 4;
@@ -443,7 +465,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLimpiarFiltros;
         private System.Windows.Forms.ComboBox cboModulo;
-        private System.Windows.Forms.ComboBox cboUsuario;
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.DateTimePicker dtpDesde;
         private System.Windows.Forms.DataGridView dgvBitacora;
@@ -457,7 +478,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblTotalRegistros;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.TextBox txtModulo;
         private System.Windows.Forms.TextBox txtAccion;
@@ -465,5 +485,9 @@
         private System.Windows.Forms.TextBox txtFecha;
         internal System.Windows.Forms.TextBox txtBuscarPorIP;
         private System.Windows.Forms.Button btnActualizarBitacora;
+        private System.Windows.Forms.TextBox txtNombreHost;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RichTextBox txtDescripcion;
+        private ucCboUsuario ucCboUsuario1;
     }
 }
