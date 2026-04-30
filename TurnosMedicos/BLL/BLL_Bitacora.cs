@@ -2,6 +2,7 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -50,10 +51,14 @@ namespace BLL
             return ipSeleccionada;
         }
 
-
         public List<BE_Bitacora> ObtenerBitacora()
         {
             return dal_bitacora.ObtenerBitacora();
+        }
+
+        public DataTable FiltrarBitacora(DateTime? desde, DateTime? hasta, int? idUsuario, string modulo, string ip)
+        {
+            return dal_bitacora.FiltrarBitacora(desde, hasta, idUsuario, modulo, ip);
         }
     }
 }
