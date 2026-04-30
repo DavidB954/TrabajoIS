@@ -27,7 +27,9 @@ namespace GestionTurnosMedicos
             dgvBitacora.Columns["IdBitacora"].Visible = false;
             dgvBitacora.MultiSelect = false;
             dgvBitacora.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            
+            cboModulo.SelectedIndex = -1;
+            dtpDesde.Checked = false;
+            dtpHasta.Checked = false;
         }
 
   
@@ -52,51 +54,76 @@ namespace GestionTurnosMedicos
 
         private void dgvBitacora_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var Fila = dgvBitacora.Rows[e.RowIndex];
+            try
+            {
+                var Fila = dgvBitacora.Rows[e.RowIndex];
 
-            if (Fila == null)
-            {
-                return;
-            }
-            else
-            {
-                txtFecha.Text = Fila.Cells["FechaHora"].Value.ToString();
-                if (Fila.Cells["IdUsuario"].Value != null)
+                if (Fila == null)
                 {
-                    txtUsuario.Text = Convert.ToString(Fila.Cells["IdUsuario"].Value.ToString()) ?? "";
+                    return;
                 }
                 else
                 {
-                    txtUsuario.Text = "";
-                }
-                txtAccion.Text = Fila.Cells["Accion"].Value.ToString();
-                txtModulo.Text = Fila.Cells["Modulo"].Value.ToString();
-                txtIP.Text = Fila.Cells["IP"].Value.ToString();
-                txtNombreHost.Text = Fila.Cells["NombreMaquina"].Value.ToString();
-                txtDescripcion.Text = Fila.Cells["Descripcion"].Value.ToString();
+                    txtFecha.Text = Fila.Cells["FechaHora"].Value.ToString();
+                    if (Fila.Cells["IdUsuario"].Value != null)
+                    {
+                        txtUsuario.Text = Convert.ToString(Fila.Cells["IdUsuario"].Value.ToString()) ?? "";
+                    }
+                    else
+                    {
+                        txtUsuario.Text = "";
+                    }
+                    txtAccion.Text = Fila.Cells["Accion"].Value.ToString();
+                    txtModulo.Text = Fila.Cells["Modulo"].Value.ToString();
+                    txtIP.Text = Fila.Cells["IP"].Value.ToString();
+                    txtNombreHost.Text = Fila.Cells["NombreMaquina"].Value.ToString();
+                    txtDescripcion.Text = Fila.Cells["Descripcion"].Value.ToString();
 
+                }
             }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            
         }
 
         public void CboModulos()
         {
             cboModulo.Items.Add("LOGIN");
-            cboModulo.Items.Add("USUARIOS");
+            cboModulo.Items.Add("USUARIO");
+            cboModulo.SelectedIndex = -1;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
 
+            DateTime ? desde = dtpDesde.Checked ? dtpDesde.Value.Date : (DateTime?)null;
+            DateTime? hasta = dtpHasta.Checked ? dtpHasta.Value.Date : (DateTime?)null;
+            int? idUsuario = ucCboUsuario1.IdSeleccionado;
+            string modulo = string.IsNullOrEmpty(cboModulo.Text) ? null : cboModulo.Text;
+            string ip = string.IsNullOrEmpty(txtBuscarPorIP.Text) ? null : txtBuscarPorIP.Text;
+           
+            dgvBitacora.DataSource = null;
+            
+            DataTable rdo = bll_bitacora.FiltrarBitacora(desde, hasta, idUsuario, modulo, ip);
 
+            dgvBitacora.DataSource = rdo;            
 
-            if (!IPAddress.TryParse(txtBuscarPorIP.Text, out _))
-            {
-                MessageBox.Show("IP Invalida");
-            }
+        }
 
+        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            dtpDesde.Value = DateTime.Now;
+            dtpDesde.Checked = false;
+            dtpHasta.Value = DateTime.Now;
+            dtpHasta.Checked = false;
+            ucCboUsuario1.CargarCombo();
+            cboModulo.SelectedIndex = -1;
+            txtBuscarPorIP.Clear();
 
-
-
+            LimpiarActualizar();
         }
     }
 }

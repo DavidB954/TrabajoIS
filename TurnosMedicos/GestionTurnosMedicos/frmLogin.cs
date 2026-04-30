@@ -54,5 +54,10 @@ namespace GestionTurnosMedicos
             }
             
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
