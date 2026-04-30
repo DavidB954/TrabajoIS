@@ -19,31 +19,32 @@ namespace GestionTurnosMedicos
             InitializeComponent();
         }
         BLL_Usuario bll_Usu = new BLL_Usuario();
-        BE_Usuario usuario = new BE_Usuario();
-        
-              
+        BE_LoginResultado Obj_Usuario = new BE_LoginResultado();
+
+        public void LimpiarTextBox()
+        {
+            txtEmail.Clear();
+            txtPassword.Clear();
+        }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
             {
-                string mensaje; 
+                Obj_Usuario = bll_Usu.ObtenerUsuarioPorEmail(txtEmail.Text, txtPassword.Text);
 
-                BE_Usuario usuario = bll_Usu.VerificarUsuario(txtUsuario.Text, txtPassword.Text, out mensaje);
-
-                if (usuario != null)
+                if (Obj_Usuario.Usuario != null)
                 {
-                    Sesion.Instancia().UsuarioActual = usuario; 
-                    MessageBox.Show($"Bienvenido {usuario.Nombre}");
+                    //Para agarrar la sesion del singleton y guardar el usuario logueado
+                    Sesion.Instancia().UsuarioActual = Obj_Usuario.Usuario;
 
-                    frmPrincipal formPrincipal = new frmPrincipal();
-                    formPrincipal.Show();
-                    this.Hide();
+                    frmPrincipal formP = new frmPrincipal();
+                    formP.Show();
                 }
                 else
                 {
-                   
-                    txtPassword.Clear();
-                    txtUsuario.Clear();
+                    MessageBox.Show(Obj_Usuario.Mensaje);
+                    LimpiarTextBox();
+                    return;
                 }
             }
             catch (Exception ex)

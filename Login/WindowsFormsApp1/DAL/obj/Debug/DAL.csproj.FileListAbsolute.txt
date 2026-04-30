@@ -1,0 +1,11 @@
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\bin\Debug\DAL.dll
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\bin\Debug\DAL.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\bin\Debug\BE.dll
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\bin\Debug\BE.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\obj\Debug\DAL.csproj.Up2Date
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\obj\Debug\DAL.dll
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\obj\Debug\DAL.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\bin\Debug\System.Data.SqlClient.dll
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\Login\WindowsFormsApp1\DAL\bin\Debug\System.Data.SqlClient.xml

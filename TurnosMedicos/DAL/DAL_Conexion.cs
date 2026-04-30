@@ -9,7 +9,7 @@ namespace DAL
 {
     public class DAL_Conexion
     {
-        private string ConnectionString = "Data Source=.; Initial Catalog= GestionTurnosMedicos; Integrated Security = True";
+        private static readonly string ConnectionString = "Data Source=.; Initial Catalog= GestionTurnosMedicos; Integrated Security = True";
 
         public SqlConnection ObtenerConexion()
         {
