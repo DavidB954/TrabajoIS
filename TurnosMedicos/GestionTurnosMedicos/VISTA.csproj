@@ -138,6 +138,10 @@
       <Project>{b17f73be-42aa-4f05-9c31-52f8d0de5c34}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{4311f574-9f36-427c-9f2c-d1881338aee4}</Project>
+      <Name>Servicios</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Buscar1.png" />

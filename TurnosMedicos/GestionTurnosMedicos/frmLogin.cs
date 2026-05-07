@@ -1,13 +1,7 @@
 ﻿using BE;
 using BLL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Servicios;
 using System.Windows.Forms;
 
 namespace GestionTurnosMedicos
@@ -20,7 +14,7 @@ namespace GestionTurnosMedicos
         }
         BLL_Usuario bll_Usu = new BLL_Usuario();
         BE_LoginResultado Obj_Usuario = new BE_LoginResultado();
-
+        
         public void LimpiarTextBox()
         {
             txtEmail.Clear();
@@ -35,10 +29,13 @@ namespace GestionTurnosMedicos
                 if (Obj_Usuario.Usuario != null)
                 {
                     //Para agarrar la sesion del singleton y guardar el usuario logueado
-                    Sesion.Instancia().UsuarioActual = Obj_Usuario.Usuario;
+                    Sesion Sesion = Sesion.Instancia();
+                    
+                    Sesion.UsuarioActual = Obj_Usuario.Usuario;
 
                     frmPrincipal formP = new frmPrincipal();
                     formP.Show();
+                    LimpiarTextBox();
                 }
                 else
                 {

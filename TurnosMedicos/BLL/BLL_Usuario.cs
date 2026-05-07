@@ -1,11 +1,7 @@
 ﻿using BE;
 using DAL;
-using System;
+using Servicios;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -13,7 +9,6 @@ namespace BLL
     {
         DAL_Usuario dal_usuario = new DAL_Usuario();
         BLL_Bitacora bll_bitacora = new BLL_Bitacora();
-
 
         //Obtenemos el objeto usuario con el mail 
         public BE_LoginResultado ObtenerUsuarioPorEmail(string Email, string Password)
@@ -86,6 +81,7 @@ namespace BLL
 
         public void AgregarUsuario(BE_Usuario usuario)
         {
+            
             usuario.HashPassword = HashHelper.GenerarHash(usuario.HashPassword);
             dal_usuario.AgregarUsuario(usuario);
 
