@@ -84,7 +84,6 @@ namespace GestionTurnosMedicos
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message);
-                throw;
             }
             
         }
@@ -100,7 +99,7 @@ namespace GestionTurnosMedicos
         {
 
             DateTime ? desde = dtpDesde.Checked ? dtpDesde.Value.Date : (DateTime?)null;
-            DateTime? hasta = dtpHasta.Checked ? dtpHasta.Value.Date : (DateTime?)null;
+            DateTime? hasta = dtpHasta.Checked ? dtpHasta.Value.Date.AddDays(1).AddSeconds(-1) : (DateTime?)null;
             int? idUsuario = ucCboUsuario1.IdSeleccionado;
             string modulo = string.IsNullOrEmpty(cboModulo.Text) ? null : cboModulo.Text;
             string ip = string.IsNullOrEmpty(txtBuscarPorIP.Text) ? null : txtBuscarPorIP.Text;

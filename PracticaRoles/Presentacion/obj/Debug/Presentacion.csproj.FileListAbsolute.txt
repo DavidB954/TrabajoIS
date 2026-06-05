@@ -1,0 +1,17 @@
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\Presentacion.exe.config
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\Presentacion.exe
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\Presentacion.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\BE.dll
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\BLL.dll
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\BE.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\bin\Debug\BLL.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.csproj.AssemblyReference.cache
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.Properties.Resources.resources
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.csproj.GenerateResource.cache
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presenta.BC77CD05.Up2Date
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.exe
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.form1.resources
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.frmRoles.resources
+C:\Users\David\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\6.to Ing. SW\PracticaRoles\Presentacion\obj\Debug\Presentacion.frmPermisos.resources

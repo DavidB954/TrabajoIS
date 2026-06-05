@@ -41,6 +41,8 @@ namespace GestionTurnosMedicos
 
             dgvUsuarios.Columns["HashPassword"].Visible = false;
             dgvUsuarios.Columns["usuario"].Visible = false;
+            dgvUsuarios.Columns["NombreApellido"].Visible = false;
+            dgvUsuarios.Columns["DVH"].Visible = false;
             dgvUsuarios.ClearSelection();
             dgvUsuarios.CurrentCell = null;
             idSeleccionado = null;

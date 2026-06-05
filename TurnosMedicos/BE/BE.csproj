@@ -45,6 +45,9 @@
     <Compile Include="BE_Bitacora.cs" />
     <Compile Include="BE_LoginResultado.cs" />
     <Compile Include="BE_Usuario.cs" />
+    <Compile Include="Composite\Componente.cs" />
+    <Compile Include="Composite\Permiso.cs" />
+    <Compile Include="Composite\RolComposite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
