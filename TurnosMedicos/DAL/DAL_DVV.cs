@@ -54,7 +54,7 @@ namespace DAL
             {
                 conexion.Open();
 
-                SqlCommand cmdCalcularDVV = new SqlCommand($"SELECT STRING_AGG(DVH, '') FROM {NombreTabla}", conexion);
+                SqlCommand cmdCalcularDVV = new SqlCommand($"SELECT STRING_AGG(DVH, '''') FROM {NombreTabla}", conexion);
 
                 string concatenacion = cmdCalcularDVV.ExecuteScalar()?.ToString();
 
@@ -66,14 +66,14 @@ namespace DAL
                 //Calculamos el hash
                 using (SHA256 sha256 = SHA256.Create())
                 {
-                    byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(concatenacion));
+                    byte[] bytes = sha256.ComputeHash(Encoding.Unicode.GetBytes(concatenacion));
 
                     StringBuilder constructor = new StringBuilder();
 
                     //Por cada byte del array, convierte a string en formato hexadecimal (x) y con dos digitos (2). Y lo agrega al constructor.
                     foreach (byte b in bytes)
                     {
-                        constructor.Append(b.ToString("x2"));
+                        constructor.Append(b.ToString("X2"));
                     }
 
 

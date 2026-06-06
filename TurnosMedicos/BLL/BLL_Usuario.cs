@@ -12,11 +12,11 @@ namespace BLL
         DAL_Usuario dal_usuario = new DAL_Usuario();
         BLL_Bitacora bll_bitacora = new BLL_Bitacora();
         BLL_DVV bll_dvv = new BLL_DVV();
-
+        DAL_DVV dal_dvv = new DAL_DVV();
         //Obtenemos el objeto usuario con el mail 
         public BE_LoginResultado ObtenerUsuarioPorEmail(string Email, string Password)
         {
-            Password = HashHelper.GenerarHash(Password);
+           Password = HashHelper.GenerarHash(Password);
 
             //Obtenemos el objeto Usuario con el mail
             BE_Usuario Usuario = dal_usuario.ObtenerUsuarioPorEmail(Email);
@@ -151,7 +151,9 @@ namespace BLL
       
         public void CalcularDVH(BE_Usuario usuario)
         {
-            string DVH = $"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{usuario.Activo}";
+            string activo = usuario.Activo ? "1" : "0";
+
+            string DVH = $"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{activo}";
 
             usuario.DVH = HashHelper.GenerarHash(DVH);
         }

@@ -16,16 +16,15 @@ namespace Servicios
             {
 
                 //Convierte el string en bytes. Como resultado se obtiene un array de bytes.
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                byte[] bytes = sha256.ComputeHash(Encoding.Unicode.GetBytes(Password));
 
                 StringBuilder constructor = new StringBuilder();
 
                 //Por cada byte del array, convierte a string en formato hexadecimal (x) y con dos digitos (2). Y lo agrega al constructor.
                 foreach (byte b in bytes)
                 {
-                    constructor.Append(b.ToString("x2"));
+                    constructor.Append(b.ToString("X2"));
                 }
-
 
                 //Devuelve el hash como string.
                 return constructor.ToString();

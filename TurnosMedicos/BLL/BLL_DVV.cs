@@ -24,5 +24,6 @@ namespace BLL
             return dvvAlmacenado == dvvRecalculado;
 
         }
+
     }
 }

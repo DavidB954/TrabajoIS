@@ -35,5 +35,7 @@ namespace GestionTurnosMedicos
             dgvSeguridad.Columns["DVH_Almacenado"].HeaderText = "DVH Guardado";
             dgvSeguridad.Columns["DVH_Recalculado"].HeaderText = "DVH Recalculado";
         }
+
+     
     }
 }
