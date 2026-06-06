@@ -231,12 +231,13 @@ namespace DAL
             {
                 conexion.Open();
 
-                SqlCommand comando = new SqlCommand("Update Usuario SET Nombre=@nombre, Apellido=@apellido, Email=@email, Activo = @activo, DVH = @dvh WHERE IdUsuario=@id", conexion);
+                SqlCommand comando = new SqlCommand("Update Usuario SET Nombre=@nombre, Apellido=@apellido, Email=@email, HashPassword=@hash, Activo = @activo, DVH = @dvh WHERE IdUsuario=@id", conexion);
 
                 comando.Parameters.AddWithValue("@id", Usuario.IdUsuario);
                 comando.Parameters.AddWithValue("@nombre", Usuario.Nombre);
                 comando.Parameters.AddWithValue("@apellido", Usuario.Apellido);
                 comando.Parameters.AddWithValue("@email", Usuario.Email);
+                comando.Parameters.AddWithValue("@hash", Usuario.HashPassword);
                 comando.Parameters.Add("@activo", SqlDbType.Bit).Value = Usuario.Activo;
                 comando.Parameters.Add("@dvh", SqlDbType.VarChar, 255).Value = Usuario.DVH;
                 comando.ExecuteNonQuery();

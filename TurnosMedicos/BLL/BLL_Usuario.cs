@@ -9,6 +9,7 @@ namespace BLL
     {
         DAL_Usuario dal_usuario = new DAL_Usuario();
         BLL_Bitacora bll_bitacora = new BLL_Bitacora();
+        BLL_DVV bll_dvv = new BLL_DVV();
 
         //Obtenemos el objeto usuario con el mail 
         public BE_LoginResultado ObtenerUsuarioPorEmail(string Email, string Password)
@@ -46,6 +47,11 @@ namespace BLL
                     CalcularDVH(Usuario);
 
                     dal_usuario.BloquearUsuario(Usuario.IdUsuario, Usuario.DVH);
+                    
+                    //Recalculamos el DVV
+                    bll_dvv.ActualizarDVV("Usuario");
+
+
                     //Mandamos a bitacora que se bloquea el usuario por superar intentos fallidos.
 
                     bll_bitacora.RegistrarEvento(Usuario.IdUsuario, AccionBitacora.LOGIN_BLOQUEADO, "LOGIN", $"Se bloquea al usuario: {Usuario.Nombre}, ID: {Usuario.IdUsuario}, por superar la cantidad de intentos permitidos");
@@ -54,13 +60,18 @@ namespace BLL
                 }
                 else
                 {
+                    CalcularDVH(Usuario);
+
+                    dal_usuario.ActualizarIntentosFallidos(Usuario.IntentosFallidos, Usuario.IdUsuario, Usuario.DVH);
+
+                    //Recalculamos el DVV
+                    bll_dvv.ActualizarDVV("Usuario");
+
                     //Mandamos a bitacora el intento de login por contraseña incorrecta
 
                     bll_bitacora.RegistrarEvento(Usuario.IdUsuario, AccionBitacora.LOGIN_INCORRECTO, "LOGIN", $"Intento de inicio de sesion con el usuario: {Usuario.Nombre}, ID: {Usuario.IdUsuario} con contraseña incorrecta");
 
-                    CalcularDVH(Usuario);
-
-                    dal_usuario.ActualizarIntentosFallidos(Usuario.IntentosFallidos, Usuario.IdUsuario, Usuario.DVH);
+                    
 
                     return new BE_LoginResultado {ExitoLogin = false, Mensaje = $"Contraseña Incorrecta. Intentos fallidos: {Usuario.IntentosFallidos}" };
                 }
@@ -72,6 +83,9 @@ namespace BLL
                 CalcularDVH(Usuario);
 
                 dal_usuario.ActualizarIntentosFallidos(0, Usuario.IdUsuario, Usuario.DVH);
+
+                //Recalculamos el DVV
+                bll_dvv.ActualizarDVV("Usuario");
 
                 //Mandamos a bitacora el login exitoso
 
@@ -96,6 +110,9 @@ namespace BLL
 
             dal_usuario.AgregarUsuario(usuario);
 
+            //Recalculamos el DVV
+            bll_dvv.ActualizarDVV("Usuario");
+
             //Mandamos a bitacora la creacion del nuevo usuario
 
             bll_bitacora.RegistrarEvento(Sesion.Instancia().UsuarioActual.IdUsuario, AccionBitacora.USUARIO_ALTA, "USUARIO", $"Se crea un nuevo usuario: {usuario.Nombre}, {usuario.Apellido}, creado por {Sesion.Instancia().UsuarioActual.Nombre}");
@@ -104,9 +121,14 @@ namespace BLL
 
         public void ModificarUsuario(BE_Usuario usuario)
         {
+            usuario.HashPassword = HashHelper.GenerarHash(usuario.HashPassword);
+
             CalcularDVH(usuario);
 
             dal_usuario.ModificarUsuario(usuario);
+
+            //Recalculamos el DVV
+            bll_dvv.ActualizarDVV("Usuario");
 
             //Mandamos a bitacora la modificacion del usuario
 
@@ -116,6 +138,9 @@ namespace BLL
         public void EliminarUsuario(int id)
         {
             dal_usuario.EliminarUsuario(id);
+
+            //Recalculamos el DVV
+            bll_dvv.ActualizarDVV("Usuario");
 
             //Mandamos a bitacora la eliminacion del usuario
             bll_bitacora.RegistrarEvento(Sesion.Instancia().UsuarioActual.IdUsuario, AccionBitacora.USUARIO_BAJA, "USUARIO", $"El Usuario {Sesion.Instancia().UsuarioActual.Nombre}, da de baja al Usuario con ID: {id}");

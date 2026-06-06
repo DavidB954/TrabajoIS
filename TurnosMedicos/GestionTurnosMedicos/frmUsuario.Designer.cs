@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
@@ -75,21 +74,11 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnResetPass
-            // 
-            this.btnResetPass.Location = new System.Drawing.Point(324, 258);
-            this.btnResetPass.Name = "btnResetPass";
-            this.btnResetPass.Size = new System.Drawing.Size(101, 35);
-            this.btnResetPass.TabIndex = 7;
-            this.btnResetPass.Text = "Reiniciar Password";
-            this.btnResetPass.UseVisualStyleBackColor = true;
-            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
-            // 
             // btnEliminar
             // 
             this.btnEliminar.Image = global::GestionTurnosMedicos.Properties.Resources.Delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(481, 258);
+            this.btnEliminar.Location = new System.Drawing.Point(318, 258);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(101, 35);
             this.btnEliminar.TabIndex = 8;
@@ -194,7 +183,6 @@
             this.Controls.Add(this.txtNombreUsuario);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnResetPass);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -212,7 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.TextBox txtNombreUsuario;

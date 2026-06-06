@@ -48,6 +48,7 @@
     <Compile Include="Composite\Componente.cs" />
     <Compile Include="Composite\Permiso.cs" />
     <Compile Include="Composite\RolComposite.cs" />
+    <Compile Include="BE_DVV.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
