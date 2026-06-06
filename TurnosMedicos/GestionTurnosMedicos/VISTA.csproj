@@ -35,7 +35,9 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -74,6 +76,12 @@
     <Compile Include="frmRolesPermisos.Designer.cs">
       <DependentUpon>frmRolesPermisos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSeguridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeguridad.Designer.cs">
+      <DependentUpon>frmSeguridad.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRolesPermisos.resx">
       <DependentUpon>frmRolesPermisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeguridad.resx">
+      <DependentUpon>frmSeguridad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
@@ -137,6 +148,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{b17f73be-42aa-4f05-9c31-52f8d0de5c34}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{4311f574-9f36-427c-9f2c-d1881338aee4}</Project>
+      <Name>Servicios</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

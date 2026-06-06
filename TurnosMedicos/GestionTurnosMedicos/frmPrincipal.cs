@@ -1,13 +1,5 @@
-﻿using BE;
-using BLL;
+﻿using Servicios;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GestionTurnosMedicos
@@ -41,7 +33,8 @@ namespace GestionTurnosMedicos
         }
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = Sesion.Instancia().UsuarioActual.Nombre;
+            Sesion Sesion = Sesion.Instancia();
+            lblUsuario.Text = Sesion.UsuarioActual.Nombre;
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)

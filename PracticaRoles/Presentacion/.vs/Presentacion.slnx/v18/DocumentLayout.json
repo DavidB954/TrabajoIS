@@ -1,0 +1,268 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\frmpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:frmpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9BB762B-E167-4919-BB85-3BA15B2AB9C2}|..\\BE\\BE.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\be\\tipopermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\frmpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:frmpermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\frmusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:frmusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\frmroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:frmroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\form1.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:form1.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\presentacion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0F648EA-0A3A-4EE7-830B-C4AC3954E2BE}|Presentacion.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9BB762B-E167-4919-BB85-3BA15B2AB9C2}|..\\BE\\BE.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\be\\permiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9BB762B-E167-4919-BB85-3BA15B2AB9C2}|..\\BE\\BE.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\be\\rolcomposite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F9BB762B-E167-4919-BB85-3BA15B2AB9C2}|..\\BE\\BE.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\be\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8ABA896-8433-43E4-B735-49482A7FFA89}|..\\DAL\\DAL.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\dal\\dal_permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8ABA896-8433-43E4-B735-49482A7FFA89}|..\\DAL\\DAL.csproj|c:\\users\\david\\onedrive - universidad abierta interamericana\\6.to ing. sw\\practicaroles\\dal\\dal_conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmPermisos.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmPermisos.cs",
+              "RelativeDocumentMoniker": "frmPermisos.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmPermisos.cs",
+              "RelativeToolTip": "frmPermisos.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwBMAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T17:06:20.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.cs",
+              "RelativeDocumentMoniker": "form1.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.cs [Design]",
+              "RelativeToolTip": "form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T01:17:06.525Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "form1.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.cs",
+              "RelativeDocumentMoniker": "form1.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.cs",
+              "RelativeToolTip": "form1.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAswEIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:48:27.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.Designer.cs",
+              "RelativeDocumentMoniker": "form1.Designer.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.Designer.cs",
+              "RelativeToolTip": "form1.Designer.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAADwv1sAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:48:29.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TipoPermiso.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\TipoPermiso.cs",
+              "RelativeDocumentMoniker": "..\\BE\\TipoPermiso.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\TipoPermiso.cs",
+              "RelativeToolTip": "..\\BE\\TipoPermiso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:39:58.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmPermisos.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmPermisos.cs",
+              "RelativeDocumentMoniker": "frmPermisos.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmPermisos.cs [Design]",
+              "RelativeToolTip": "frmPermisos.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:51:47.888Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmUsuarios.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmUsuarios.cs",
+              "RelativeDocumentMoniker": "frmUsuarios.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmUsuarios.cs [Design]",
+              "RelativeToolTip": "frmUsuarios.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:51:55.345Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmRoles.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmRoles.cs",
+              "RelativeDocumentMoniker": "frmRoles.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\frmRoles.cs [Design]",
+              "RelativeToolTip": "frmRoles.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:51:28.728Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "form1.resx",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.resx",
+              "RelativeDocumentMoniker": "form1.resx",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\form1.resx",
+              "RelativeToolTip": "form1.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-05-23T16:48:32.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\Presentacion\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAswA4AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T16:48:14.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Component.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\Component.cs",
+              "RelativeDocumentMoniker": "..\\BE\\Component.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\Component.cs",
+              "RelativeToolTip": "..\\BE\\Component.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T01:17:54.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RolComposite.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\RolComposite.cs",
+              "RelativeDocumentMoniker": "..\\BE\\RolComposite.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\RolComposite.cs",
+              "RelativeToolTip": "..\\BE\\RolComposite.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T01:25:49.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DAL_Permisos.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\DAL\\DAL_Permisos.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DAL_Permisos.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\DAL\\DAL_Permisos.cs",
+              "RelativeToolTip": "..\\DAL\\DAL_Permisos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T01:18:16.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Permiso.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\Permiso.cs",
+              "RelativeDocumentMoniker": "..\\BE\\Permiso.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\BE\\Permiso.cs",
+              "RelativeToolTip": "..\\BE\\Permiso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T01:22:14.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DAL_CONEXION.cs",
+              "DocumentMoniker": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\DAL\\DAL_CONEXION.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\DAL_CONEXION.cs",
+              "ToolTip": "C:\\Users\\David\\OneDrive - UNIVERSIDAD ABIERTA INTERAMERICANA\\6.to Ing. SW\\PracticaRoles\\DAL\\DAL_CONEXION.cs",
+              "RelativeToolTip": "..\\DAL\\DAL_CONEXION.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T15:15:28.359Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

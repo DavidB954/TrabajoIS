@@ -117,39 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnAgregarRol.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAADjSURBVDhPtVNLDgFBEJ0TcA2cw2KiJlMViatgnAWTYCxE
-        qq2cgAPgDHaztjOkmsynp0cywUvepvPeq0+qHecf8Hd+B5gCYArfDHpMbVNXQnczaILCtceUeIoeBTIl
-        wBS5e7dh+jTE7Cm8lIwmmc7WEF3ZFFcSlwWzzGxr+3A9aprvoi3sBBROSqJPAa+QcRbAFNqM8S3WtAfh
-        LB8wrxsATNMs4NsRZCF1lggK796230oDdBdMkSmsIjAtCmaBHIcciSk2CUwn6yEJdIjClW0caVsqV5rz
-        kJ2AwlH6mRQOSzP/Ck/4NnY6Dv+YMwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnEditarRol.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAABfSURBVDhPY2AYUuDJkyer79+/z4EuThR4/Pjxfxgm2RBkzVC8Fl0NTgDVcAXZAHQ1OAFMM5QN
-        NgRdDU4wQjXvf/To0X0omzTNIAAzAIRJ1gwCjx49mg8yBITR5QY3AACjeqVgyyDq7AAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
-  <data name="btnEliminarRol.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAABrSURBVDhPY2AYtOCVkdL8V8bK+8HYSGk+ujxW8MpY+T8xGF0fHDw3UHAAKQDR6Pi1oYI9SA5E
-        o+tDATAb0A1AlsMLYIrg/odiZDm8YNQA/IrwycEBSBG67UiYsAEvDRX1sWgEY5AcuvqBBwDneprtOGeg
-        SAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnGuardarCambios.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAACBSURBVDhPzZKxDYAwDAQ9D6OxFCMgJmAUJkhFXIM+CGQ+TkJBkZe+ic9vR7JIZ9JZJK5l7wN3
-        GOkiolveZK1HJeQBp7wRhnSshPAkNnOZfgtoqch5hRguv94czi1oMF8wIcwVC5h8B9gtmKsW0hZfv4Ar
-        bB0SDAasK1wjN7DB9KQT0821ybf3BKwAAAAASUVORK5CYII=
-</value>
-  </data>
 </root>

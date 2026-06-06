@@ -41,6 +41,8 @@ namespace GestionTurnosMedicos
 
             dgvUsuarios.Columns["HashPassword"].Visible = false;
             dgvUsuarios.Columns["usuario"].Visible = false;
+            dgvUsuarios.Columns["NombreApellido"].Visible = false;
+            dgvUsuarios.Columns["DVH"].Visible = false;
             dgvUsuarios.ClearSelection();
             dgvUsuarios.CurrentCell = null;
             idSeleccionado = null;
@@ -75,9 +77,9 @@ namespace GestionTurnosMedicos
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == null)
+            if (idSeleccionado == null || string.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Por favor seleccione el usuario a modificar");
+                MessageBox.Show("Por favor seleccione el usuario a modificar y asegúrese de ingresar una contraseña");
                 return;
             }
 
@@ -90,10 +92,13 @@ namespace GestionTurnosMedicos
                 Usuario.Nombre = txtNombreUsuario.Text;
                 Usuario.Apellido = txtApellido.Text;
                 Usuario.Email = txtEmail.Text;
+                Usuario.HashPassword = txtPassword.Text;
                 Usuario.Activo = Convert.ToBoolean(Fila.Cells["Activo"].Value);
+
                 bll_usuario.ModificarUsuario(Usuario);
 
                 CargarUsuarios();
+
                 LimpiarCampos();
             }            
         }
@@ -140,29 +145,5 @@ namespace GestionTurnosMedicos
             }
         }
 
-        private void btnResetPass_Click(object sender, EventArgs e)
-        {
-            if (idSeleccionado == null)
-            {
-                MessageBox.Show("Por favor seleccione el usuario a resetear la contrasena");
-                return;
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(txtPassword.Text))
-                {
-                    var fila = dgvUsuarios.SelectedRows[0];
-                    int id = Convert.ToInt32(fila.Cells["IdUsuario"].Value);
-                    string nuevaPass = txtPassword.Text;
-                    bll_usuario.ResetearPassword(id, nuevaPass);
-                    CargarUsuarios();
-                    LimpiarCampos();
-                }
-                else
-                {
-                    MessageBox.Show("Ingrese la nueva contraseña");
-                }
-            }
-        }
     }
 }

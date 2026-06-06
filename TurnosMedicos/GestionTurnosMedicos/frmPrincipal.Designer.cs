@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesYPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.gestionSeguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,19 +44,13 @@
             this.usuariosToolStripMenuItem,
             this.rolesYPermisosToolStripMenuItem,
             this.menuToolStripMenuItem,
+            this.gestionSeguridadToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(870, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // menuToolStripMenuItem
-            // 
-            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.menuToolStripMenuItem.Text = "Bitacora";
-            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
@@ -70,6 +65,13 @@
             this.rolesYPermisosToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.rolesYPermisosToolStripMenuItem.Text = "Roles y Permisos";
             this.rolesYPermisosToolStripMenuItem.Click += new System.EventHandler(this.rolesYPermisosToolStripMenuItem_Click);
+            // 
+            // menuToolStripMenuItem
+            // 
+            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.menuToolStripMenuItem.Text = "Bitacora";
+            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -86,6 +88,12 @@
             this.lblUsuario.Size = new System.Drawing.Size(35, 13);
             this.lblUsuario.TabIndex = 3;
             this.lblUsuario.Text = "label1";
+            // 
+            // gestionSeguridadToolStripMenuItem
+            // 
+            this.gestionSeguridadToolStripMenuItem.Name = "gestionSeguridadToolStripMenuItem";
+            this.gestionSeguridadToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
+            this.gestionSeguridadToolStripMenuItem.Text = "Gestion Seguridad";
             // 
             // frmPrincipal
             // 
@@ -114,6 +122,7 @@
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolesYPermisosToolStripMenuItem;
         private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.ToolStripMenuItem gestionSeguridadToolStripMenuItem;
     }
 }
 

@@ -1,14 +1,17 @@
 ﻿using BE;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -137,61 +140,72 @@ namespace DAL
         }
 
         //Updateamos los intentos fallidos en caso de que el login sea incorrecto, y bloqueamos el usuario si supera los 3 intentos fallidos.
-        public void ActualizarIntentosFallidos(int intentos, int IdUsuario)
+        public void ActualizarIntentosFallidos(int intentos, int IdUsuario, string DVH)
         {
             using (SqlConnection conexion = conex.ObtenerConexion())
             {
                 conexion.Open();
 
-                SqlCommand cmdActualizarIntentos = new SqlCommand("Update Usuario Set IntentosFallidos = @intentos Where IdUsuario=@id", conexion);
+                SqlCommand cmdActualizarIntentos = new SqlCommand("Update Usuario Set IntentosFallidos = @intentos, DVH = @dvh Where IdUsuario=@id", conexion);
 
                 cmdActualizarIntentos.Parameters.Add("@intentos", SqlDbType.Int).Value = intentos;
                 cmdActualizarIntentos.Parameters.Add("@id", SqlDbType.Int).Value = IdUsuario;
+                cmdActualizarIntentos.Parameters.Add("@dvh", SqlDbType.VarChar, 255).Value = DVH;
 
                 cmdActualizarIntentos.ExecuteNonQuery();
             }
         }
 
-        public void BloquearUsuario(int IdUsuario)
+        public void BloquearUsuario(int IdUsuario, string DVH)
         {
             using (SqlConnection conexion = conex.ObtenerConexion())
             {
                 conexion.Open();
 
-                SqlCommand cmdBloquearUsuario = new SqlCommand("Update Usuario SET Activo=0 Where IdUsuario = @id", conexion);
+                SqlCommand cmdBloquearUsuario = new SqlCommand("Update Usuario SET Activo=0, DVH=@dvh Where IdUsuario = @id", conexion);
 
                 cmdBloquearUsuario.Parameters.Add("@id", SqlDbType.Int).Value = IdUsuario;
+                cmdBloquearUsuario.Parameters.Add("@dvh", SqlDbType.VarChar, 255).Value = DVH;
 
                 cmdBloquearUsuario.ExecuteNonQuery();
             }
         }
         public List<BE_Usuario> ListaUsuario()
         {
-            List<BE_Usuario> ListaUsu = new List<BE_Usuario>();
-
-            using (SqlConnection conexion = conex.ObtenerConexion())
+            try
             {
-                conexion.Open();
+                List<BE_Usuario> ListaUsu = new List<BE_Usuario>();
 
-                SqlCommand comando = new SqlCommand("Select * from Usuario", conexion);
-
-                SqlDataReader lector = comando.ExecuteReader();
-
-                while (lector.Read())
+                using (SqlConnection conexion = conex.ObtenerConexion())
                 {
-                    BE_Usuario Usu = new BE_Usuario();
-                    Usu.IdUsuario = Convert.ToInt32(lector[0]);
-                    Usu.Nombre = lector[1].ToString();
-                    Usu.Apellido = lector[2].ToString();
-                    Usu.Email = lector[3].ToString();
-                    Usu.Activo = Convert.ToBoolean(lector[5]);
-                    Usu.IntentosFallidos = Convert.ToInt32(lector[6]);
-                    ListaUsu.Add(Usu);
+                    conexion.Open();
+
+                    SqlCommand comando = new SqlCommand("Select IdUsuario, Nombre, Apellido, Email, HashPassword, Activo, IntentosFallidos, DVH from Usuario", conexion);
+
+                    SqlDataReader lector = comando.ExecuteReader();
+
+                    while (lector.Read())
+                    {
+                        BE_Usuario Usu = new BE_Usuario();
+                        Usu.IdUsuario = Convert.ToInt32(lector[0]);
+                        Usu.Nombre = lector[1].ToString();
+                        Usu.Apellido = lector[2].ToString();
+                        Usu.Email = lector[3].ToString();
+                        Usu.HashPassword = lector[4].ToString();
+                        Usu.Activo = Convert.ToBoolean(lector[5]);
+                        Usu.IntentosFallidos = Convert.ToInt32(lector[6]);
+                        Usu.DVH = lector[7].ToString();
+                        ListaUsu.Add(Usu);
+                    }
+
+                    return ListaUsu;
                 }
-
-                return ListaUsu;
             }
-
+            catch (Exception ex)
+            {
+                return null;
+                
+            }
         }
 
         public void AgregarUsuario(BE_Usuario Usuario)
@@ -200,12 +214,13 @@ namespace DAL
             {
                 conexion.Open();
 
-                SqlCommand comando = new SqlCommand("Insert into Usuario (Nombre, Apellido, Email, HashPassword) VALUES (@nombre, @apellido, @email, @hash)", conexion);
+                SqlCommand comando = new SqlCommand("Insert into Usuario (Nombre, Apellido, Email, HashPassword, DVH) VALUES (@nombre, @apellido, @email, @hash, @dvh)", conexion);
 
                 comando.Parameters.AddWithValue("@nombre", Usuario.Nombre);
                 comando.Parameters.AddWithValue("@apellido", Usuario.Apellido);
                 comando.Parameters.AddWithValue("@email", Usuario.Email);
                 comando.Parameters.AddWithValue("@hash", Usuario.HashPassword);
+                comando.Parameters.AddWithValue("@dvh", Usuario.DVH);
 
                 comando.ExecuteNonQuery();
             }
@@ -218,13 +233,15 @@ namespace DAL
             {
                 conexion.Open();
 
-                SqlCommand comando = new SqlCommand("Update Usuario SET Nombre=@nombre, Apellido=@apellido, Email=@email, Activo = @activo WHERE IdUsuario=@id", conexion);
+                SqlCommand comando = new SqlCommand("Update Usuario SET Nombre=@nombre, Apellido=@apellido, Email=@email, HashPassword=@hash, Activo = @activo, DVH = @dvh WHERE IdUsuario=@id", conexion);
 
                 comando.Parameters.AddWithValue("@id", Usuario.IdUsuario);
                 comando.Parameters.AddWithValue("@nombre", Usuario.Nombre);
                 comando.Parameters.AddWithValue("@apellido", Usuario.Apellido);
                 comando.Parameters.AddWithValue("@email", Usuario.Email);
+                comando.Parameters.AddWithValue("@hash", Usuario.HashPassword);
                 comando.Parameters.Add("@activo", SqlDbType.Bit).Value = Usuario.Activo;
+                comando.Parameters.Add("@dvh", SqlDbType.VarChar, 255).Value = Usuario.DVH;
                 comando.ExecuteNonQuery();
             }
         }
@@ -249,19 +266,6 @@ namespace DAL
             }
         }
 
-        public void ResetearContrasena(int id, string nuevaPass)
-        {
-            using (SqlConnection conexion = conex.ObtenerConexion())
-            {
-                conexion.Open();
-                SqlCommand comando = new SqlCommand("Update Usuario SET HashPassword=@nuevoHash, IntentosFallidos = 0, Activo=1 WHERE IdUsuario=@id", conexion);
-
-                comando.Parameters.AddWithValue("@id", id);
-                comando.Parameters.AddWithValue("@nuevoHash", nuevaPass);
-
-                comando.ExecuteNonQuery();
-            }
-        }
 
     }
 }

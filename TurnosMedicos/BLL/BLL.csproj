@@ -42,10 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL_Bitacora.cs" />
+    <Compile Include="BLL_DVV.cs" />
     <Compile Include="BLL_Usuario.cs" />
-    <Compile Include="HashHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sesion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
@@ -55,6 +54,14 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{b0c43875-78a2-4b0b-ad80-59f6a79efe02}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiciosB\ServiciosB.csproj">
+      <Project>{f412239e-3d1b-4248-83cd-4264476eeace}</Project>
+      <Name>ServiciosB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{4311f574-9f36-427c-9f2c-d1881338aee4}</Project>
+      <Name>Servicios</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

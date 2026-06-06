@@ -1,13 +1,7 @@
 ﻿using BE;
 using BLL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Servicios;
 using System.Windows.Forms;
 
 namespace GestionTurnosMedicos
@@ -20,7 +14,9 @@ namespace GestionTurnosMedicos
         }
         BLL_Usuario bll_Usu = new BLL_Usuario();
         BE_LoginResultado Obj_Usuario = new BE_LoginResultado();
+        BLL_DVV bll_dvv = new BLL_DVV();
 
+        
         public void LimpiarTextBox()
         {
             txtEmail.Clear();
@@ -30,15 +26,37 @@ namespace GestionTurnosMedicos
         {
             try
             {
+                bool integra = bll_dvv.VerificarIntegridad("Usuario");
+
+                if (!integra)
+                {
+                    // Si DVV no coincide → verificar fila por fila
+                    var corruptos = bll_Usu.VerificarUsuarios();
+
+                    MessageBox.Show("Tabla Usuario corrupta. Se abrirá el detalle en Seguridad.");
+
+                    frmSeguridad frm = new frmSeguridad();
+                    frm.WindowState = FormWindowState.Maximized;
+
+                    frm.MostrarCorruptos(corruptos);
+
+                    frm.Show();
+
+                    return;
+                }
+
                 Obj_Usuario = bll_Usu.ObtenerUsuarioPorEmail(txtEmail.Text, txtPassword.Text);
 
                 if (Obj_Usuario.Usuario != null)
                 {
                     //Para agarrar la sesion del singleton y guardar el usuario logueado
-                    Sesion.Instancia().UsuarioActual = Obj_Usuario.Usuario;
+                    Sesion Sesion = Sesion.Instancia();
+                    
+                    Sesion.UsuarioActual = Obj_Usuario.Usuario;
 
                     frmPrincipal formP = new frmPrincipal();
                     formP.Show();
+                    LimpiarTextBox();
                 }
                 else
                 {

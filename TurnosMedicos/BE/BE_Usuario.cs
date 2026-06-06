@@ -27,5 +27,7 @@ namespace BE
 
         public string NombreApellido { get { return Nombre + " " + Apellido; } }
 
+        public string DVH { get; set; }
+
     }
 }
