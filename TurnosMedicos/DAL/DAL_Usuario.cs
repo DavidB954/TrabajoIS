@@ -180,7 +180,7 @@ namespace DAL
                 {
                     conexion.Open();
 
-                    SqlCommand comando = new SqlCommand("Select IdUsuario, Nombre, Apellido, Email, Activo, IntentosFallidos from Usuario", conexion);
+                    SqlCommand comando = new SqlCommand("Select IdUsuario, Nombre, Apellido, Email, HashPassword, Activo, IntentosFallidos, DVH from Usuario", conexion);
 
                     SqlDataReader lector = comando.ExecuteReader();
 
@@ -191,8 +191,10 @@ namespace DAL
                         Usu.Nombre = lector[1].ToString();
                         Usu.Apellido = lector[2].ToString();
                         Usu.Email = lector[3].ToString();
-                        Usu.Activo = Convert.ToBoolean(lector[4]);
-                        Usu.IntentosFallidos = Convert.ToInt32(lector[5]);
+                        Usu.HashPassword = lector[4].ToString();
+                        Usu.Activo = Convert.ToBoolean(lector[5]);
+                        Usu.IntentosFallidos = Convert.ToInt32(lector[6]);
+                        Usu.DVH = lector[7].ToString();
                         ListaUsu.Add(Usu);
                     }
 
@@ -264,19 +266,6 @@ namespace DAL
             }
         }
 
-        public void ResetearContrasena(int id, string nuevaPass)
-        {
-            using (SqlConnection conexion = conex.ObtenerConexion())
-            {
-                conexion.Open();
-                SqlCommand comando = new SqlCommand("Update Usuario SET HashPassword=@nuevoHash, IntentosFallidos = 0, Activo=1 WHERE IdUsuario=@id", conexion);
-
-                comando.Parameters.AddWithValue("@id", id);
-                comando.Parameters.AddWithValue("@nuevoHash", nuevaPass);
-
-                comando.ExecuteNonQuery();
-            }
-        }
 
     }
 }

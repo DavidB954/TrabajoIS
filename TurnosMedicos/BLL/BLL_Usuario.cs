@@ -1,7 +1,9 @@
 ﻿using BE;
 using DAL;
 using Servicios;
+using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 namespace BLL
 {
@@ -146,21 +148,38 @@ namespace BLL
             bll_bitacora.RegistrarEvento(Sesion.Instancia().UsuarioActual.IdUsuario, AccionBitacora.USUARIO_BAJA, "USUARIO", $"El Usuario {Sesion.Instancia().UsuarioActual.Nombre}, da de baja al Usuario con ID: {id}");
         }
 
-        public void ResetearPassword(int id, string nuevoPass)
-        {
-            nuevoPass = HashHelper.GenerarHash(nuevoPass);
-            
-            dal_usuario.ResetearContrasena(id, nuevoPass);
-
-            //Mandamos a bitacora el reseteo de contraseña
-            bll_bitacora.RegistrarEvento(Sesion.Instancia().UsuarioActual.IdUsuario, AccionBitacora.USUARIO_RESTABLECIMIENTO_PASSWORD, "USUARIO", $"El Usuario {Sesion.Instancia().UsuarioActual.Nombre}, resetea la contraseña del Usuario con ID: {id}");
-        }
-
+      
         public void CalcularDVH(BE_Usuario usuario)
         {
             string DVH = $"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{usuario.Activo}";
 
             usuario.DVH = HashHelper.GenerarHash(DVH);
+        }
+
+        public List<BE_RegistrosCorruptos> VerificarUsuarios()
+        {
+            List<BE_RegistrosCorruptos> ListaCorruptos = new List<BE_RegistrosCorruptos>();
+
+            //Traemos toda la lista de Usuarios
+            List<BE_Usuario> ListaUsuarios = dal_usuario.ListaUsuario();
+
+            //Recalculamos el DVH uno por uno
+
+            foreach (var usuario in ListaUsuarios)
+            {
+                string dvhRecalculado = HashHelper.GenerarHash($"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{usuario.Activo}");
+
+                if (usuario.DVH != dvhRecalculado)
+                {
+                    ListaCorruptos.Add(new BE_RegistrosCorruptos
+                    {
+                        IdUsuario = usuario.IdUsuario,
+                        DVH_Almacenado = usuario.DVH,
+                        DVH_Recalculado = dvhRecalculado
+                    });
+                }
+            }
+            return ListaCorruptos;
         }
     }
 }

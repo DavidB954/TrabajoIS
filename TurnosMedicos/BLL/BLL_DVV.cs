@@ -14,5 +14,15 @@ namespace BLL
         {
             dal_dvv.ActualizarDVV(NombreTabla);
         }
+
+        public bool VerificarIntegridad(string nombreTabla)
+        {
+            string dvvAlmacenado = dal_dvv.ObtenerDVV(nombreTabla);
+
+            string dvvRecalculado = dal_dvv.CalcularDVV(nombreTabla);
+
+            return dvvAlmacenado == dvvRecalculado;
+
+        }
     }
 }

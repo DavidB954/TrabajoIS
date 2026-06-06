@@ -14,6 +14,8 @@ namespace GestionTurnosMedicos
         }
         BLL_Usuario bll_Usu = new BLL_Usuario();
         BE_LoginResultado Obj_Usuario = new BE_LoginResultado();
+        BLL_DVV bll_dvv = new BLL_DVV();
+
         
         public void LimpiarTextBox()
         {
@@ -24,6 +26,26 @@ namespace GestionTurnosMedicos
         {
             try
             {
+                bool integra = bll_dvv.VerificarIntegridad("Usuario");
+
+                if (!integra)
+                {
+                    // Si DVV no coincide → verificar fila por fila
+                    var corruptos = bll_Usu.VerificarUsuarios();
+
+                    MessageBox.Show("Tabla Usuario corrupta. Se abrirá el detalle en Seguridad.");
+
+                    frmSeguridad frm = new frmSeguridad();
+                    frm.MdiParent = this;
+                    frm.WindowState = FormWindowState.Maximized;
+
+                    frm.MostrarCorruptos(corruptos);
+
+                    frm.Show();
+
+                    return;
+                }
+
                 Obj_Usuario = bll_Usu.ObtenerUsuarioPorEmail(txtEmail.Text, txtPassword.Text);
 
                 if (Obj_Usuario.Usuario != null)

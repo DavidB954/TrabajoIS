@@ -44,6 +44,7 @@
     <Compile Include="AccionBitacora.cs" />
     <Compile Include="BE_Bitacora.cs" />
     <Compile Include="BE_LoginResultado.cs" />
+    <Compile Include="BE_RegistrosCorruptos.cs" />
     <Compile Include="BE_Usuario.cs" />
     <Compile Include="Composite\Componente.cs" />
     <Compile Include="Composite\Permiso.cs" />
