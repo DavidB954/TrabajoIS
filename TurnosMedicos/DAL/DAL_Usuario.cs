@@ -19,92 +19,6 @@ namespace DAL
     {
         DAL_Conexion conex = new DAL_Conexion();
 
-        /*  public BE_Usuario VerificarUsuario(string Email, string Password, out string mensaje)
-          {
-               mensaje = "";
-              using (SqlConnection conexion = conex.ObtenerConexion())
-              {
-                  conexion.Open();
-
-                  //Buscamos por mail
-
-                  SqlCommand comando = new SqlCommand("Select IdUsuario, Nombre, HashPassword, Activo, IntentosFallidos FROM Usuario WHERE Email=@email", conexion);
-
-                  comando.Parameters.AddWithValue("@email", Email);
-
-                  SqlDataReader lector = comando.ExecuteReader();
-
-                  if (!lector.Read()) //Usuario no existe
-                  {
-                      mensaje = "Usuario no encontrado.";
-                      return null;
-                  }
-
-                  int id = lector.GetInt32(0);
-                  string nombre = lector.GetString(1);
-                  string hashPassword = lector.GetString(2);
-                  bool activo = lector.GetBoolean(3);
-                  int intentosFallidos = lector.GetInt32(4);
-
-                  lector.Close();
-
-                  //verifica si esta activo
-                  if (!activo)
-                  {
-                      mensaje = "Usuario bloqueado por demasiados intentos fallidos. Contacte Administrador";
-                      return null;
-                  }
-
-                  //validamos la contraseña 
-
-                  if (hashPassword == Password)
-                  {
-                      if (intentosFallidos > 0)
-                      {
-                          SqlCommand cmdReset = new SqlCommand("Update Usuario SET IntentosFallidos=0 WHERE IdUsuario=@id", conexion);
-
-                          cmdReset.Parameters.Add("@id", SqlDbType.Int).Value = id;
-
-                          cmdReset.ExecuteNonQuery();
-                      }
-
-                      mensaje = "Login exitoso.";
-
-                      return new BE_Usuario
-                      {
-                          IdUsuario = id,
-                          Nombre = nombre
-                      };
-                  }
-                  else //login incorrecto
-                  {
-                      intentosFallidos++;
-
-                      bool act = intentosFallidos < 3;
-
-                      SqlCommand updComando = new SqlCommand("Update Usuario Set IntentosFallidos=@intentos, Activo=@activo WHERE IdUsuario=@id", conexion);
-
-                      updComando.Parameters.Add("@intentos", SqlDbType.Int).Value = intentosFallidos;
-                      updComando.Parameters.Add("@activo", SqlDbType.Bit).Value = act;
-                      updComando.Parameters.Add("@id", SqlDbType.Int).Value = id;
-
-                      updComando.ExecuteNonQuery();
-
-                      if (!act)
-                      {
-                          mensaje = "Usuario bloqueado por demasiados intentos fallidos. Contacte Administrador";
-                      }
-                      else
-                      {
-                          mensaje = $"Contraseña incorrecta. Intentos restantes: {3 - intentosFallidos}";
-                      }
-
-                      return null;
-
-                  }
-              }
-          }*/
-
         //Verificamos que existe el mail del Usuario y devolvemos un objeto Usuario con la contraseña hasheada para poder compararla luego.
 
         public BE_Usuario ObtenerUsuarioPorEmail(string email)
@@ -134,7 +48,8 @@ namespace DAL
                     Email = Lector.GetString(3),
                     HashPassword = Lector.GetString(4),
                     Activo = Lector.GetBoolean(5),
-                    IntentosFallidos = Lector.GetInt32(6)
+                    IntentosFallidos = Lector.GetInt32(6),
+                    DVH = Lector.GetString(7)
                 };
             }
         }
@@ -265,7 +180,5 @@ namespace DAL
                 comando.ExecuteNonQuery();
             }
         }
-
-
     }
 }

@@ -169,7 +169,9 @@ namespace BLL
 
             foreach (var usuario in ListaUsuarios)
             {
-                string dvhRecalculado = HashHelper.GenerarHash($"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{usuario.Activo}");
+                string activo = usuario.Activo ? "1" : "0";
+
+                string dvhRecalculado = HashHelper.GenerarHash($"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{activo}");
 
                 if (usuario.DVH != dvhRecalculado)
                 {

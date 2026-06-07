@@ -36,6 +36,7 @@ namespace GestionTurnosMedicos
                     MessageBox.Show("Tabla Usuario corrupta. Se abrirá el detalle en Seguridad.");
 
                     frmSeguridad frm = new frmSeguridad();
+
                     frm.WindowState = FormWindowState.Maximized;
 
                     frm.MostrarCorruptos(corruptos);
