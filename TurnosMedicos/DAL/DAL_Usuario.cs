@@ -19,6 +19,35 @@ namespace DAL
     {
         DAL_Conexion conex = new DAL_Conexion();
 
+
+        //Obtenemos el usuario por id
+        public BE_Usuario ObtenerUsuarioPorId(int IdUsuario)
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+                SqlCommand cmdUsuId = new SqlCommand("Select * From Usuario Where IdUsuario=@id", conexion);
+                cmdUsuId.Parameters.Add("@id", SqlDbType.Int).Value = IdUsuario;
+                SqlDataReader lector = cmdUsuId.ExecuteReader();
+                if (!lector.Read())
+                    return null;
+
+                return new BE_Usuario
+                {
+                    IdUsuario = lector.GetInt32(0),
+                    Nombre = lector.GetString(1),
+                    Apellido = lector.GetString(2),
+                    Email = lector.GetString(3),
+                    HashPassword = lector.GetString(4),
+                    Activo = lector.GetBoolean(5),
+                    IntentosFallidos = lector.GetInt32(6),
+                    DVH = lector.GetString(7)
+                };
+            }
+        }
+
+
+
         //Verificamos que existe el mail del Usuario y devolvemos un objeto Usuario con la contraseña hasheada para poder compararla luego.
 
         public BE_Usuario ObtenerUsuarioPorEmail(string email)

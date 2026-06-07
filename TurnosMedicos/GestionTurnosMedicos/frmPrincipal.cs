@@ -63,5 +63,9 @@ namespace GestionTurnosMedicos
             AbrirFormularios<frmRolesPermisos>();
         }
 
+        private void gestionSeguridadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirFormularios<frmSeguridad>();
+        }
     }
 }

@@ -4,6 +4,7 @@ using Servicios;
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 
 namespace BLL
 {
@@ -12,7 +13,14 @@ namespace BLL
         DAL_Usuario dal_usuario = new DAL_Usuario();
         BLL_Bitacora bll_bitacora = new BLL_Bitacora();
         BLL_DVV bll_dvv = new BLL_DVV();
-        DAL_DVV dal_dvv = new DAL_DVV();
+
+        //obtener usuario por id
+
+        public BE_Usuario ObtenerUsuarioPorId(int IdUsuario)
+        {
+          return dal_usuario.ObtenerUsuarioPorId(IdUsuario);
+        }
+
         //Obtenemos el objeto usuario con el mail 
         public BE_LoginResultado ObtenerUsuarioPorEmail(string Email, string Password)
         {
@@ -123,18 +131,33 @@ namespace BLL
 
         public void ModificarUsuario(BE_Usuario usuario)
         {
-            usuario.HashPassword = HashHelper.GenerarHash(usuario.HashPassword);
+            try
+            {
+                usuario.HashPassword = HashHelper.GenerarHash(usuario.HashPassword);
 
-            CalcularDVH(usuario);
+                CalcularDVH(usuario);
 
-            dal_usuario.ModificarUsuario(usuario);
+                dal_usuario.ModificarUsuario(usuario);
 
-            //Recalculamos el DVV
-            bll_dvv.ActualizarDVV("Usuario");
+                //Recalculamos el DVV
+                bll_dvv.ActualizarDVV("Usuario");
 
-            //Mandamos a bitacora la modificacion del usuario
+                var sesion = Sesion.Instancia().UsuarioActual;
+                string modificadoPor = sesion != null ? sesion.Nombre : "SISTEMA";
+                int idModificador = sesion != null ? sesion.IdUsuario : 0;
 
-            bll_bitacora.RegistrarEvento(Sesion.Instancia().UsuarioActual.IdUsuario, AccionBitacora.USUARIO_MODIFICACION, "USUARIO", $"Se modifica al usuario: {usuario.Nombre}, ID: {usuario.IdUsuario}. Modificado por: {Sesion.Instancia().UsuarioActual.Nombre}");
+                bll_bitacora.RegistrarEvento(
+                    idModificador,
+                    AccionBitacora.USUARIO_MODIFICACION,
+                    "USUARIO",
+                    $"Se modifica al usuario: {usuario.Nombre}, ID: {usuario.IdUsuario}. Modificado por: {modificadoPor}"
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( ex.ToString() );
+            }
+          
         }
 
         public void EliminarUsuario(int id)

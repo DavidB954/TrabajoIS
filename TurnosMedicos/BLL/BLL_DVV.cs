@@ -49,5 +49,15 @@ namespace BLL
 
             return HashHelper.GenerarHash(concatenacion.ToString());
         }
+
+        public void GenerarBackUp(string rutaBackup)
+        {
+            dal_dvv.GenerarBackUp(rutaBackup);
+        }
+
+        public void RestaurarBackup(string rutaBackup)
+        {
+            dal_dvv.RestaurarBackup(rutaBackup);
+        }
     }
 }
