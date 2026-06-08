@@ -32,9 +32,9 @@
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesYPermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionSeguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.gestionSeguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,13 @@
             this.menuToolStripMenuItem.Text = "Bitacora";
             this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
+            // gestionSeguridadToolStripMenuItem
+            // 
+            this.gestionSeguridadToolStripMenuItem.Name = "gestionSeguridadToolStripMenuItem";
+            this.gestionSeguridadToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
+            this.gestionSeguridadToolStripMenuItem.Text = "Gestion Seguridad";
+            this.gestionSeguridadToolStripMenuItem.Click += new System.EventHandler(this.gestionSeguridadToolStripMenuItem_Click);
+            // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
@@ -88,12 +95,6 @@
             this.lblUsuario.Size = new System.Drawing.Size(35, 13);
             this.lblUsuario.TabIndex = 3;
             this.lblUsuario.Text = "label1";
-            // 
-            // gestionSeguridadToolStripMenuItem
-            // 
-            this.gestionSeguridadToolStripMenuItem.Name = "gestionSeguridadToolStripMenuItem";
-            this.gestionSeguridadToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
-            this.gestionSeguridadToolStripMenuItem.Text = "Gestion Seguridad";
             // 
             // frmPrincipal
             // 

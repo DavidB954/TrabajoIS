@@ -16,72 +16,106 @@ namespace DAL
 
         public string ObtenerDVV(string NombreTabla)
         {
-            using (SqlConnection conexion = conex.ObtenerConexion())
+            try
             {
-                conexion.Open();
-
-                SqlCommand cmdObtenerDVV = new SqlCommand("Select DVV from DVV Where NombreTabla=@tabla", conexion);
-
-                cmdObtenerDVV.Parameters.Add("@tabla", SqlDbType.VarChar, 50).Value = NombreTabla;
-
-                object result = cmdObtenerDVV.ExecuteScalar();
-
-                return result?.ToString();
-            }
-        }
-
-
-        public void ActualizarDVV(string NombreTabla)
-        {
-            using (SqlConnection conexion = conex.ObtenerConexion())
-            {
-                conexion.Open();
-
-                SqlCommand cmdDVV = new SqlCommand("dbo.ActualizarDVV", conexion);
-
-                cmdDVV.CommandType = CommandType.StoredProcedure;
-
-                cmdDVV.Parameters.Add("@NombreTabla", SqlDbType.VarChar, 50).Value = NombreTabla;
-
-                cmdDVV.ExecuteNonQuery();
-            }
-        }
-
-        //Calcular sin actualizar
-        public string CalcularDVV(string NombreTabla)
-        {
-            using (SqlConnection conexion = conex.ObtenerConexion())
-            {
-                conexion.Open();
-
-                SqlCommand cmdCalcularDVV = new SqlCommand($"SELECT STRING_AGG(DVH, '''') FROM {NombreTabla}", conexion);
-
-                string concatenacion = cmdCalcularDVV.ExecuteScalar()?.ToString();
-
-                if (string.IsNullOrEmpty(concatenacion))
+                using (SqlConnection conexion = conex.ObtenerConexion())
                 {
-                    return null;
+                    conexion.Open();
+
+                    SqlCommand cmdObtenerDVV = new SqlCommand("Select DVV from DVV Where NombreTabla=@tabla", conexion);
+
+                    cmdObtenerDVV.Parameters.Add("@tabla", SqlDbType.VarChar, 50).Value = NombreTabla;
+
+                    object result = cmdObtenerDVV.ExecuteScalar();
+
+                    return result?.ToString();
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+         
+        }
 
-                //Calculamos el hash
-                using (SHA256 sha256 = SHA256.Create())
+        public void ActualizarDVV(string DVV, string NombreTabla)
+        {
+            try
+            {
+                using (SqlConnection conexion = conex.ObtenerConexion())
                 {
-                    byte[] bytes = sha256.ComputeHash(Encoding.Unicode.GetBytes(concatenacion));
+                    conexion.Open();
 
-                    StringBuilder constructor = new StringBuilder();
+                    SqlCommand cmdDVV = new SqlCommand("UPDATE DVV SET DVV=@DVV, FechaDeActualizacion=GETDATE() WHERE NombreTabla=@tabla", conexion);
 
-                    //Por cada byte del array, convierte a string en formato hexadecimal (x) y con dos digitos (2). Y lo agrega al constructor.
-                    foreach (byte b in bytes)
-                    {
-                        constructor.Append(b.ToString("X2"));
-                    }
-
-
-                    //Devuelve el hash como string.
-                    return constructor.ToString();
+                    cmdDVV.Parameters.Add("@DVV", SqlDbType.VarChar, 64).Value = DVV;
+                    cmdDVV.Parameters.Add("@tabla", SqlDbType.VarChar, 50).Value = NombreTabla;
+                    cmdDVV.ExecuteNonQuery();
 
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
+        }
+
+        public void GenerarBackUp(string rutaBackup)
+        {
+            try
+            {
+                using (SqlConnection conexion = conex.ObtenerConexion())
+                {
+                    conexion.Open();
+
+                    SqlCommand cmd = new SqlCommand($"BACKUP DATABASE GestionTurnosMedicos TO DISK = '{rutaBackup}'", conexion);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+          
+        }
+
+        public void RestaurarBackup(string rutaBackup)
+        {
+            try
+            {
+                SqlConnection.ClearAllPools();
+
+                string masterConnectionString = "Data Source=.;Initial Catalog=master;Integrated Security=True";
+
+                using (SqlConnection conexion = new SqlConnection(masterConnectionString))
+                {
+                    conexion.Open();
+
+                    //Cerramos las conexiones existentes
+                    SqlCommand cmdSingleUser = new SqlCommand("ALTER DATABASE GestionTurnosMedicos SET SINGLE_USER WITH ROLLBACK IMMEDIATE", conexion);
+
+                    cmdSingleUser.ExecuteNonQuery();
+
+                    //Restauramos con REPLACE
+
+                    SqlCommand cmdRestauracion = new SqlCommand($"RESTORE DATABASE GestionTurnosMedicos FROM DISK = '{rutaBackup}' WITH REPLACE", conexion);
+
+                    cmdRestauracion.ExecuteNonQuery();
+
+                    //Volvemos a multiuser
+                    SqlCommand cmdMultiUser = new SqlCommand("ALTER DATABASE GestionTurnosMedicos SET MULTI_USER", conexion);
+
+                    cmdMultiUser.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
         }
     }
 }
