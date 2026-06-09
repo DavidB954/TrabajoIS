@@ -9,11 +9,20 @@ namespace BE.Composite
 {
     public class RolComposite : Componente
     {
-        public string Nombre{ get; set;}
-
         public List<Componente> hijos = new List<Componente>();
 
         public void Agregar(Componente componente) => hijos.Add(componente);
+
+        public void Modificar(Componente compViejo, Componente compNuevo)
+        {
+            int index = hijos.IndexOf(compViejo);
+            if (index != -1)
+            {
+                hijos[index] = compNuevo;
+            }
+        }
+
+        public void Eliminar(Componente componente) => hijos.Remove(componente);
 
         public override bool TienePermiso(string Permiso)
         {
@@ -26,5 +35,7 @@ namespace BE.Composite
             }
             return false;
         }
+
+        public IReadOnlyList<Componente> Hijos() => hijos;
     }
 }

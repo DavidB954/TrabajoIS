@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE.Composite
+namespace WindowsFormsApp1
 {
-    public abstract class Componente
+    public abstract class Component
     {
-        public int Id { get; set; }
         public string Nombre { get; set; }
-        public abstract bool TienePermiso(string Permiso);
+
+        public abstract bool TienePermiso(string nombre);
     }
 }
