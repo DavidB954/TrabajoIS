@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GestionTurnosMedicos
+namespace WindowsFormsApp1
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace GestionTurnosMedicos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmRolesPermisos());
+            Application.Run(new Form1());
         }
     }
 }
