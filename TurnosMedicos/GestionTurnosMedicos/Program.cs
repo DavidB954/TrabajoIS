@@ -16,7 +16,7 @@ namespace GestionTurnosMedicos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmRolesPermisos());
+            Application.Run(new frmUsuario());
         }
     }
 }

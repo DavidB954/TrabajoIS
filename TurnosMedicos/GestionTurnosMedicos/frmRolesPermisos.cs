@@ -1,5 +1,7 @@
 ﻿using BE.Composite;
 using BLL;
+using Microsoft.VisualBasic;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,21 +38,12 @@ namespace GestionTurnosMedicos
             treeViewRoles.Nodes.Add(root);
         }
         private void frmRolesPermisos_Load(object sender, EventArgs e)
-        {
-            groupBoxDetalles.Visible = false;
-            groupBoxOpciones.Visible = false;
+        {           
             CargarCombo();
             CargarTreeView();
             CargarComboRolesExistentes();
             CargarPermisosAlCombo();
         }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            groupBoxDetalles.Visible = true;
-            groupBoxOpciones.Visible = true;
-        }
-
         public class TipoItem
         {
             public int ID
@@ -287,27 +280,13 @@ namespace GestionTurnosMedicos
             TreeNode nodoRaiz = new TreeNode(raiz.Nombre);
             nodoRaiz.Tag = raiz;
 
-            AgregarNodosRecursivo(raiz, nodoRaiz);
+            TreeViewHelper.AgregarNodosRecursivo(raiz, nodoRaiz);
 
             treeViewRolesC.Nodes.Add(nodoRaiz);
             treeViewRolesC.ExpandAll();
         }
 
-        private void AgregarNodosRecursivo(RolComposite rolPadre, TreeNode nodoPadre)
-        {
-            foreach (var hijo in rolPadre.Hijos())
-            {
-                TreeNode nodoHijo = new TreeNode(hijo.Nombre);
-                nodoHijo.Tag = hijo;
-
-                nodoPadre.Nodes.Add(nodoHijo);
-
-                // Si es un rol, seguir bajando
-                if (hijo is RolComposite subRol)
-                    AgregarNodosRecursivo(subRol, nodoHijo);
-            }
-        }
-
+       
 
         private void CargarComboRolesExistentes()
         {
@@ -343,6 +322,8 @@ namespace GestionTurnosMedicos
         private void CargarPermisosAlCombo()
         {
             cboPermisos.Items.Clear();
+
+            cboPermisos.Text = "";
 
             List<Permiso> listaPermisos = bll_roles.ObtenerPermisos();
 
@@ -413,7 +394,7 @@ namespace GestionTurnosMedicos
 
                 // Agregar al TreeView
                 TreeNode nodoNuevo = new TreeNode(clon.Nombre) { Tag = clon };
-                AgregarNodosRecursivo(clon, nodoNuevo);
+                TreeViewHelper.AgregarNodosRecursivo(clon, nodoNuevo);
                 treeViewRoles.SelectedNode.Nodes.Add(nodoNuevo);
                 treeViewRoles.ExpandAll();
 
@@ -500,7 +481,7 @@ namespace GestionTurnosMedicos
 
                 // Agregar al TreeView
                 TreeNode nodoNuevo = new TreeNode(clon.Nombre) { Tag = clon };
-                AgregarNodosRecursivo(clon, nodoNuevo);
+                TreeViewHelper.AgregarNodosRecursivo(clon, nodoNuevo);
                 treeViewRoles.SelectedNode.Nodes.Add(nodoNuevo);
                 treeViewRoles.ExpandAll();
             }
@@ -659,6 +640,83 @@ namespace GestionTurnosMedicos
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void groupBoxRE_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+      
+        private void btnEliminarPermisos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Permiso permisoSeleccionado = cboPermisos.SelectedItem as Permiso;
+                if (permisoSeleccionado == null)
+                {
+                    MessageBox.Show("Seleccione un permiso");
+                    return;
+                }
+
+                string advertencia = $"¿Eliminar completamente el Permiso '{permisoSeleccionado.Nombre}'?\nSe borrará de todos los roles.";
+
+                var confirmacion = MessageBox.Show(advertencia, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (confirmacion != DialogResult.Yes)
+                    return;
+                bll_roles.EliminarPermiso(permisoSeleccionado.Id);
+
+
+                CargarTreeView();
+
+                CargarComboRolesExistentes();
+
+                CargarPermisosAlCombo();
+
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show("Error al eliminar: " + ex.Message);
+            }
+           
+
+        }
+
+        private void btnModificarPermisos_Click(object sender, EventArgs e)
+        {
+            Permiso permisoSeleccionado = cboPermisos.SelectedItem as Permiso;
+            if (permisoSeleccionado == null)
+            {
+                MessageBox.Show("Seleccione un permiso");
+                return;
+            }
+
+            string nuevoNombre = Interaction.InputBox("Ingrese el nuevo nombre del permiso: ", "Modificar Permiso", permisoSeleccionado.Nombre);
+
+            if (string.IsNullOrWhiteSpace(nuevoNombre))
+            {
+                return;
+            }
+
+            bool existe = cboPermisos.Items.Cast<Permiso>().Any(p => p.Id != permisoSeleccionado.Id && p.Nombre.Equals(nuevoNombre, StringComparison.OrdinalIgnoreCase));
+
+            if (existe)
+            {
+                MessageBox.Show("Ya existe un permiso con ese nombre.");
+                return;
+            }
+
+            permisoSeleccionado.Nombre = nuevoNombre;
+
+            bll_roles.ModificarPermiso(permisoSeleccionado.Id, permisoSeleccionado.Nombre);
+
+            CargarTreeView();
+
+            CargarComboRolesExistentes();
+
+            CargarPermisosAlCombo();
+
         }
     }
 }

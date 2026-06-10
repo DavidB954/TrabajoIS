@@ -1,5 +1,7 @@
 ﻿using BE;
+using BE.Composite;
 using BLL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +21,7 @@ namespace GestionTurnosMedicos
             InitializeComponent();
         }
         BLL_Usuario bll_usuario = new BLL_Usuario();
+        BLL_Roles bll_Roles = new BLL_Roles();
 
         private int? idSeleccionado = null;
 
@@ -26,6 +29,9 @@ namespace GestionTurnosMedicos
         {
             ConfigurarGrid();
             CargarUsuarios();
+            CargarUsuarioCbo();
+            CargarRoles();
+            CargarTreeViewUsuarios();
         }
 
 
@@ -48,6 +54,22 @@ namespace GestionTurnosMedicos
             idSeleccionado = null;
         }
 
+        private void CargarUsuarioCbo()
+        {
+            cboUsuario.DataSource = bll_usuario.ListaUsuarios();
+
+            cboUsuario.DisplayMember = "NombreApellido";
+            cboUsuario.ValueMember = "IdUsuario";
+
+        }
+
+        private void CargarRoles()
+        {
+            cboRoles.DataSource = bll_Roles.ObtenerRoles();
+            cboRoles.DisplayMember = "Nombre";
+            cboRoles.ValueMember = "Id";
+
+        }
         public void LimpiarCampos()
         {
             txtNombreUsuario.Clear();
@@ -72,8 +94,6 @@ namespace GestionTurnosMedicos
                 txtEmail.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Email"].Value.ToString();
             }
         }
-
-      
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -145,5 +165,110 @@ namespace GestionTurnosMedicos
             }
         }
 
+        private void btnAsignarRol_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idUsuario = Convert.ToInt32(cboUsuario.SelectedValue);
+                int idRol = Convert.ToInt32(cboRoles.SelectedValue);
+
+                bll_Roles.AgregarRolUsuario(idUsuario, idRol);
+
+                MessageBox.Show("Rol Asignado correctamente");
+
+                CargarTreeViewUsuarios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+
+        private void CargarTreeViewUsuarios()
+        {
+            treeViewUsuarios.Nodes.Clear();
+
+            TreeNode raiz = new TreeNode("Usuarios");
+
+            List<BE_Usuario> usuarios = bll_usuario.ListaUsuarios();
+
+
+            foreach (var usuario in usuarios)
+            {
+                TreeNode nodoUsuario = new TreeNode($"{usuario.Nombre} {usuario.Apellido}");
+                nodoUsuario.Tag = usuario;
+
+                // Reutiliza ObtenerRolesDeUsuario de BLL_Roles
+                List<RolComposite> roles = bll_Roles.ObtenerRolesDeUsuario(usuario.IdUsuario);
+
+                foreach (var rol in roles)
+                {
+                    TreeNode nodoRol = new TreeNode(rol.Nombre) { Tag = rol };
+                    TreeViewHelper.AgregarNodosRecursivo(rol, nodoRol);
+                    nodoUsuario.Nodes.Add(nodoRol);
+                }
+
+                raiz.Nodes.Add(nodoUsuario);
+            }
+
+            treeViewUsuarios.Nodes.Add(raiz);
+            treeViewUsuarios.ExpandAll();
+        }
+
+        private void btnEliminarRol_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (treeViewUsuarios.SelectedNode == null)
+                {
+                    MessageBox.Show("Seleccione un rol para quitar.");
+                    return;
+                }
+
+                TreeNode nodoSeleccionado = treeViewUsuarios.SelectedNode;
+
+                // Tiene que ser un Rol (hijo directo de un usuario)
+                // El padre tiene que tener Tag de BE_Usuario
+                if (nodoSeleccionado.Parent == null ||
+                    nodoSeleccionado.Parent.Tag == null ||
+                    !(nodoSeleccionado.Parent.Tag is BE_Usuario))
+                {
+                    MessageBox.Show("Seleccione un rol directamente asignado a un usuario.");
+                    return;
+                }
+
+                // El nodo tiene que ser un RolComposite
+                if (!(nodoSeleccionado.Tag is RolComposite rol))
+                {
+                    MessageBox.Show("Seleccione un rol para quitar.");
+                    return;
+                }
+
+                BE_Usuario usuario = nodoSeleccionado.Parent.Tag as BE_Usuario;
+
+                var confirmacion = MessageBox.Show(
+                    $"¿Quitar el rol '{rol.Nombre}' del usuario '{usuario.Nombre} {usuario.Apellido}'?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmacion != DialogResult.Yes)
+                    return; 
+                bll_Roles.QuitarRolUsuario(usuario.IdUsuario, rol.Id);
+                
+                // Quitar el nodo del TreeView
+                nodoSeleccionado.Remove();
+                MessageBox.Show("Rol quitado correctamente.");
+
+                CargarTreeViewUsuarios();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al quitar rol: " + ex.Message);
+            }
+        }
     }
 }

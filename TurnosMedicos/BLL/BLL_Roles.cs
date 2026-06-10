@@ -139,6 +139,26 @@ namespace BLL
             return raiz;
         }
 
+
+        public List<RolComposite> ObtenerRoles()
+        {
+            DataTable dtRoles = dal_roles.ObtenerTodosLosRoles();
+
+            List<RolComposite> lista = new List<RolComposite>();
+
+
+            foreach (DataRow row in dtRoles.Rows)
+            {
+                lista.Add(new RolComposite
+                {
+                    Id = Convert.ToInt32(row["IdRol"]),
+                    Nombre = row["Nombre"].ToString()
+                });
+            }
+            return lista;
+        }
+
+
         public List<Permiso> ObtenerPermisos()
         {
             var dtPermisos = dal_roles.ObtenerTodosLosPermisos();
@@ -179,6 +199,58 @@ namespace BLL
         public void EliminarRol(int id)
         {
             dal_roles.EliminarRol(id);
+        }
+
+
+        public void ModificarPermiso(int idPermiso, string nuevoNombre)
+        {
+            dal_roles.ModificarPermiso(idPermiso, nuevoNombre);
+        }
+
+        public void EliminarPermiso(int id)
+        {
+            dal_roles.EliminarPermisos(id);
+        }
+
+
+
+
+
+        //// USUARIOS
+        ///
+        public void AgregarRolUsuario(int idUsuario, int idRol)
+        {
+            dal_roles.AgregarRolUsuario(idUsuario, idRol);
+        }
+
+        public List<RolComposite> ObtenerRolesDeUsuario(int idUsuario)
+        {
+            // Reutilizamos el árbol completo ya construido
+            RolComposite arbolCompleto = CargarArbol();
+
+            // Obtenemos los IDs de roles asignados al usuario
+            DataTable dtRoles = dal_roles.ObtenerRolesPorUsuario(idUsuario);
+
+            var idsRolesUsuario = new HashSet<int>();
+
+            foreach (DataRow row in dtRoles.Rows)
+                idsRolesUsuario.Add(Convert.ToInt32(row["IdRol"]));
+
+            // Se busca en el arbol y los devuelve en una lista
+            var rolesUsuario = new List<RolComposite>();
+
+            foreach (var hijo in arbolCompleto.Hijos())
+            {
+                if (hijo is RolComposite rol && idsRolesUsuario.Contains(rol.Id))
+                    rolesUsuario.Add(rol);
+            }
+
+            return rolesUsuario;
+        }
+
+        public void QuitarRolUsuario(int idUsuario, int idRol)
+        {
+            dal_roles.QuitarRolUsuario(idUsuario, idRol);
         }
     }
 }

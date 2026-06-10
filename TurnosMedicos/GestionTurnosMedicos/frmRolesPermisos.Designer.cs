@@ -31,10 +31,8 @@
             this.groupBoxRolesPermisos = new System.Windows.Forms.GroupBox();
             this.treeViewRoles = new System.Windows.Forms.TreeView();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBoxDetalles = new System.Windows.Forms.GroupBox();
-            this.btnModificarPR = new System.Windows.Forms.Button();
             this.btnAgregarPR = new System.Windows.Forms.Button();
             this.cboTipo = new System.Windows.Forms.ComboBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -67,13 +65,12 @@
             this.groupBoxRolesPermisos.Controls.Add(this.button1);
             this.groupBoxRolesPermisos.Controls.Add(this.treeViewRoles);
             this.groupBoxRolesPermisos.Controls.Add(this.btnEliminar);
-            this.groupBoxRolesPermisos.Controls.Add(this.btnAgregar);
             this.groupBoxRolesPermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxRolesPermisos.Location = new System.Drawing.Point(33, 21);
             this.groupBoxRolesPermisos.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxRolesPermisos.Name = "groupBoxRolesPermisos";
             this.groupBoxRolesPermisos.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxRolesPermisos.Size = new System.Drawing.Size(327, 504);
+            this.groupBoxRolesPermisos.Size = new System.Drawing.Size(327, 681);
             this.groupBoxRolesPermisos.TabIndex = 0;
             this.groupBoxRolesPermisos.TabStop = false;
             this.groupBoxRolesPermisos.Text = "Roles y Permisos";
@@ -83,14 +80,14 @@
             this.treeViewRoles.Location = new System.Drawing.Point(17, 23);
             this.treeViewRoles.Margin = new System.Windows.Forms.Padding(2);
             this.treeViewRoles.Name = "treeViewRoles";
-            this.treeViewRoles.Size = new System.Drawing.Size(291, 392);
+            this.treeViewRoles.Size = new System.Drawing.Size(291, 515);
             this.treeViewRoles.TabIndex = 4;
             this.treeViewRoles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRoles_AfterSelect);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(108, 441);
+            this.btnEliminar.Location = new System.Drawing.Point(228, 562);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(80, 33);
@@ -98,18 +95,6 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(4, 441);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(80, 33);
-            this.btnAgregar.TabIndex = 1;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnModificar
             // 
@@ -125,7 +110,6 @@
             // 
             // groupBoxDetalles
             // 
-            this.groupBoxDetalles.Controls.Add(this.btnModificarPR);
             this.groupBoxDetalles.Controls.Add(this.btnAgregarPR);
             this.groupBoxDetalles.Controls.Add(this.cboTipo);
             this.groupBoxDetalles.Controls.Add(this.txtNombre);
@@ -140,17 +124,6 @@
             this.groupBoxDetalles.TabIndex = 1;
             this.groupBoxDetalles.TabStop = false;
             this.groupBoxDetalles.Text = "Crear Nuevos Roles O Permisos";
-            // 
-            // btnModificarPR
-            // 
-            this.btnModificarPR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarPR.Location = new System.Drawing.Point(246, 157);
-            this.btnModificarPR.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModificarPR.Name = "btnModificarPR";
-            this.btnModificarPR.Size = new System.Drawing.Size(80, 33);
-            this.btnModificarPR.TabIndex = 6;
-            this.btnModificarPR.Text = "Modificar";
-            this.btnModificarPR.UseVisualStyleBackColor = true;
             // 
             // btnAgregarPR
             // 
@@ -207,18 +180,18 @@
             this.groupBoxOpciones.Controls.Add(this.label3);
             this.groupBoxOpciones.Controls.Add(this.btnGuardarRP);
             this.groupBoxOpciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxOpciones.Location = new System.Drawing.Point(33, 521);
+            this.groupBoxOpciones.Location = new System.Drawing.Point(380, 538);
             this.groupBoxOpciones.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxOpciones.Name = "groupBoxOpciones";
             this.groupBoxOpciones.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxOpciones.Size = new System.Drawing.Size(327, 180);
+            this.groupBoxOpciones.Size = new System.Drawing.Size(461, 180);
             this.groupBoxOpciones.TabIndex = 2;
             this.groupBoxOpciones.TabStop = false;
-            this.groupBoxOpciones.Text = "Opciones";
+            this.groupBoxOpciones.Text = "Guardar Rol";
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(28, 54);
+            this.txtDescripcion.Location = new System.Drawing.Point(213, 31);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(186, 64);
@@ -236,10 +209,10 @@
             // btnGuardarRP
             // 
             this.btnGuardarRP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarRP.Location = new System.Drawing.Point(28, 143);
+            this.btnGuardarRP.Location = new System.Drawing.Point(141, 109);
             this.btnGuardarRP.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardarRP.Name = "btnGuardarRP";
-            this.btnGuardarRP.Size = new System.Drawing.Size(125, 33);
+            this.btnGuardarRP.Size = new System.Drawing.Size(160, 47);
             this.btnGuardarRP.TabIndex = 4;
             this.btnGuardarRP.Text = "Crear Nuevo Rol";
             this.btnGuardarRP.UseVisualStyleBackColor = true;
@@ -267,10 +240,11 @@
             this.groupBoxRE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxRE.Location = new System.Drawing.Point(380, 232);
             this.groupBoxRE.Name = "groupBoxRE";
-            this.groupBoxRE.Size = new System.Drawing.Size(461, 465);
+            this.groupBoxRE.Size = new System.Drawing.Size(461, 293);
             this.groupBoxRE.TabIndex = 4;
             this.groupBoxRE.TabStop = false;
-            this.groupBoxRE.Text = "Roles y Permisos Existentes";
+            this.groupBoxRE.Text = "Agregar Roles y Permisos Existentes";
+            this.groupBoxRE.Enter += new System.EventHandler(this.groupBoxRE_Enter);
             // 
             // btnAgregarRolExistente
             // 
@@ -317,7 +291,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(208, 441);
+            this.button1.Location = new System.Drawing.Point(17, 562);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 33);
@@ -329,7 +303,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 258);
+            this.label5.Location = new System.Drawing.Point(39, 188);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 20);
@@ -339,7 +313,7 @@
             // cboPermisos
             // 
             this.cboPermisos.FormattingEnabled = true;
-            this.cboPermisos.Location = new System.Drawing.Point(129, 255);
+            this.cboPermisos.Location = new System.Drawing.Point(129, 185);
             this.cboPermisos.Name = "cboPermisos";
             this.cboPermisos.Size = new System.Drawing.Size(202, 28);
             this.cboPermisos.TabIndex = 9;
@@ -347,18 +321,19 @@
             // btnEliminarPermisos
             // 
             this.btnEliminarPermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPermisos.Location = new System.Drawing.Point(302, 341);
+            this.btnEliminarPermisos.Location = new System.Drawing.Point(302, 230);
             this.btnEliminarPermisos.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarPermisos.Name = "btnEliminarPermisos";
             this.btnEliminarPermisos.Size = new System.Drawing.Size(87, 33);
             this.btnEliminarPermisos.TabIndex = 12;
             this.btnEliminarPermisos.Text = "Eliminar";
             this.btnEliminarPermisos.UseVisualStyleBackColor = true;
+            this.btnEliminarPermisos.Click += new System.EventHandler(this.btnEliminarPermisos_Click);
             // 
             // btnAgregarPermisos
             // 
             this.btnAgregarPermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPermisos.Location = new System.Drawing.Point(57, 341);
+            this.btnAgregarPermisos.Location = new System.Drawing.Point(57, 230);
             this.btnAgregarPermisos.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregarPermisos.Name = "btnAgregarPermisos";
             this.btnAgregarPermisos.Size = new System.Drawing.Size(80, 33);
@@ -370,13 +345,14 @@
             // btnModificarPermisos
             // 
             this.btnModificarPermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarPermisos.Location = new System.Drawing.Point(182, 341);
+            this.btnModificarPermisos.Location = new System.Drawing.Point(182, 230);
             this.btnModificarPermisos.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificarPermisos.Name = "btnModificarPermisos";
             this.btnModificarPermisos.Size = new System.Drawing.Size(87, 33);
             this.btnModificarPermisos.TabIndex = 10;
             this.btnModificarPermisos.Text = "Modificar";
             this.btnModificarPermisos.UseVisualStyleBackColor = true;
+            this.btnModificarPermisos.Click += new System.EventHandler(this.btnModificarPermisos_Click);
             // 
             // frmRolesPermisos
             // 
@@ -409,14 +385,12 @@
         private System.Windows.Forms.GroupBox groupBoxOpciones;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboTipo;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnGuardarRP;
         private System.Windows.Forms.TreeView treeViewRoles;
-        private System.Windows.Forms.Button btnModificarPR;
         private System.Windows.Forms.Button btnAgregarPR;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label3;

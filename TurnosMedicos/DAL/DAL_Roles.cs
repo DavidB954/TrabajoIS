@@ -359,6 +359,64 @@ namespace DAL
 
         }
 
+        public void AgregarRolUsuario(int idUsuario, int idRol)
+        {
+            try
+            {
+                using (SqlConnection conexion = conex.ObtenerConexion())
+                {
+                    conexion.Open();
+
+                    SqlCommand cmdRolUsuario = new SqlCommand(@"
+                IF EXISTS (SELECT 1 FROM Usuario_Rol WHERE IdUsuario=@idUsu AND IdRol=@idRol)
+                    RAISERROR('El usuario ya tiene ese rol asignado.', 16, 1)
+                ELSE
+                    INSERT INTO Usuario_Rol (IdUsuario, IdRol) VALUES (@idUsu, @idRol)", conexion);
+
+                    cmdRolUsuario.Parameters.Add("@idUsu", SqlDbType.Int).Value = idUsuario;
+                    cmdRolUsuario.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
+
+                    cmdRolUsuario.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+          
+        }
+
+        public DataTable ObtenerRolesPorUsuario(int idUsuario)
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT IdRol FROM Usuario_Rol WHERE IdUsuario = @id", conexion);
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = idUsuario;
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
+        public void QuitarRolUsuario(int idUsuario, int idRol)
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+
+                SqlCommand cmdQuitarRol = new SqlCommand("Delete from Usuario_Rol Where IdUsuario=@idUsu AND IdRol=@idRol", conexion);
+
+                cmdQuitarRol.Parameters.Add("@idUsu", SqlDbType.Int).Value = idUsuario;
+                cmdQuitarRol.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
+
+                cmdQuitarRol.ExecuteNonQuery();
+
+            }
+        }
         public void LimpiarTablas()
         {
             using (SqlConnection conexion = conex.ObtenerConexion())
