@@ -123,8 +123,10 @@ namespace BLL
                 int idHijo = Convert.ToInt32(row["IdRolHijo"]);
                 if (roles.ContainsKey(idPadre) && roles.ContainsKey(idHijo))
                 {
-                    roles[idPadre].Agregar(roles[idHijo]);
-                    rolesConPadre.Add(idHijo);
+                    //roles[idPadre].Agregar(roles[idHijo]);
+                    //rolesConPadre.Add(idHijo);
+
+                    roles[idPadre].Agregar(ClonarRol(roles[idHijo]));
                 }
             }
 
@@ -137,6 +139,27 @@ namespace BLL
             }
 
             return raiz;
+        }
+
+        // Clonar dentro de la BLL (mismo concepto que en la UI)
+        private RolComposite ClonarRol(RolComposite original)
+        {
+            var clon = new RolComposite
+            {
+                Id = original.Id,
+                Nombre = original.Nombre,
+                EsReferencia = true
+            };
+
+            foreach (var hijo in original.Hijos())
+            {
+                if (hijo is RolComposite subRol)
+                    clon.Agregar(ClonarRol(subRol));
+                else if (hijo is Permiso p)
+                    clon.Agregar(new Permiso { Id = p.Id, IdPermiso = p.IdPermiso, Nombre = p.Nombre });
+            }
+
+            return clon;
         }
 
 

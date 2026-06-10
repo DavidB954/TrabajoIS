@@ -40,10 +40,94 @@ namespace GestionTurnosMedicos
         private void frmRolesPermisos_Load(object sender, EventArgs e)
         {           
             CargarCombo();
+            RefrescarVistas();
+        }
+
+
+
+
+
+
+
+
+        public void RefrescarVistas()
+        {
             CargarTreeView();
             CargarComboRolesExistentes();
             CargarPermisosAlCombo();
         }
+
+        private bool ConfirmarEliminacion(string mensaje)
+        {
+            return MessageBox.Show(mensaje, "Confirmar eliminación",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+        }
+
+        private bool ValidarNodoSeleccionado(out RolComposite padreDestino)
+        {
+            padreDestino = null;
+
+            if (treeViewRoles.SelectedNode == null)
+            {
+                MessageBox.Show("Seleccione un nodo destino.");
+                return false;
+            }
+
+            padreDestino = treeViewRoles.SelectedNode.Tag as RolComposite;
+
+            if (padreDestino == null)
+            {
+                MessageBox.Show("Solo se puede agregar dentro de un rol.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void AgregarComponenteAlArbol(Componente componente)
+        {
+            if (!ValidarNodoSeleccionado(out RolComposite padreDestino))
+                return;
+
+            if (ExisteHijo(treeViewRoles.SelectedNode, componente.Nombre))
+            {
+                MessageBox.Show($"Ya existe '{componente.Nombre}' en este rol.");
+                return;
+            }
+
+            padreDestino.Agregar(componente);
+
+            TreeNode nodoNuevo = new TreeNode(componente.Nombre) { Tag = componente };
+
+            if (componente is RolComposite rol)
+                TreeViewHelper.AgregarNodosRecursivo(rol, nodoNuevo);
+
+            treeViewRoles.SelectedNode.Nodes.Add(nodoNuevo);
+            treeViewRoles.ExpandAll();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public class TipoItem
         {
             public int ID
@@ -86,11 +170,7 @@ namespace GestionTurnosMedicos
 
                 MessageBox.Show("Guardado correctamente.");
 
-                CargarTreeView();
-
-                CargarComboRolesExistentes();
-
-                CargarPermisosAlCombo();
+                RefrescarVistas();
 
                 Raiz();
             }
@@ -134,7 +214,6 @@ namespace GestionTurnosMedicos
 
             return false;
         }
-
 
         private void btnAgregarPR_Click(object sender, EventArgs e)
         {
@@ -235,9 +314,6 @@ namespace GestionTurnosMedicos
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-
         private bool ExistePermisoEnArbol(TreeNode nodo, string nombre)
         {
             foreach (TreeNode hijo in nodo.Nodes)
@@ -252,9 +328,6 @@ namespace GestionTurnosMedicos
             return false;
         }
 
-
-
-
         private bool ExisteRolEnArbol(TreeNode nodo, string nombre)
         {
             foreach (TreeNode hijo in nodo.Nodes)
@@ -268,8 +341,6 @@ namespace GestionTurnosMedicos
             }
             return false;
         }
-
-
 
         private void CargarTreeView()
         {
@@ -286,11 +357,11 @@ namespace GestionTurnosMedicos
             treeViewRolesC.ExpandAll();
         }
 
-       
-
+    
         private void CargarComboRolesExistentes()
         {
             cboRolesExistentes.Items.Clear();
+
             cboRolesExistentes.Text ="";
 
             if (treeViewRolesC.Nodes.Count == 0)
@@ -310,12 +381,19 @@ namespace GestionTurnosMedicos
 
             foreach (var hijo in rol.Hijos())
             {
-                if (hijo is RolComposite subRol)
-                {
-                    cboRolesExistentes.Items.Add(subRol); // Muestra el Nombre via ToString()
-                    AgregarRolesAlCombo(subRol);
-                }
+                // Solo hijos directos de la raíz, sin recursividad
                 
+                    if (hijo is RolComposite subRol && !subRol.EsReferencia)
+                        cboRolesExistentes.Items.Add(subRol);
+               
+
+
+                //if (hijo is RolComposite subRol)
+                //{
+                //    cboRolesExistentes.Items.Add(subRol); // Muestra el Nombre via ToString()
+                //    AgregarRolesAlCombo(subRol);
+                //}
+
             }
         }
 
@@ -335,15 +413,24 @@ namespace GestionTurnosMedicos
             cboPermisos.ValueMember = "IdPermisos";
         }
 
+
+
+
+
+
+
+
+
+
         private void btnAgregarRolExistente_Click(object sender, EventArgs e)
         {
             try
             {
-                if (treeViewRoles.SelectedNode == null)
-                {
-                    MessageBox.Show("Seleccione un nodo destino.");
-                    return;
-                }
+                //if (treeViewRoles.SelectedNode == null)
+                //{
+                //    MessageBox.Show("Seleccione un nodo destino.");
+                //    return;
+                //}
 
                 if (cboRolesExistentes.SelectedItem == null)
                 {
@@ -351,15 +438,18 @@ namespace GestionTurnosMedicos
                     return;
                 }
 
-                Componente compDestino = treeViewRoles.SelectedNode.Tag as Componente;
+                //Componente compDestino = treeViewRoles.SelectedNode.Tag as Componente;
 
-                if (!(compDestino is RolComposite padreDestino))
-                {
-                    MessageBox.Show("Solo se puede agregar dentro de un rol.");
-                    return;
-                }
+                //if (!(compDestino is RolComposite padreDestino))
+                //{
+                //    MessageBox.Show("Solo se puede agregar dentro de un rol.");
+                //    return;
+                //}
 
                 RolComposite rolOrigen = cboRolesExistentes.SelectedItem as RolComposite;
+
+                if (!ValidarNodoSeleccionado(out RolComposite padreDestino))
+                    return;
 
                 if (padreDestino.Id > 0 && rolOrigen.Id > 0 && ContieneRol(rolOrigen, padreDestino.Id))
                 {
@@ -376,20 +466,25 @@ namespace GestionTurnosMedicos
                     return;
                 }
 
+
+
+
+
                 // Validar que no exista ya ese nombre en el subárbol destino
                 if (ExisteHijo(treeViewRoles.SelectedNode, rolOrigen.Nombre))
                 {
                     MessageBox.Show("Ya existe ese rol en este nivel.");
                     return;
                 }
-               
+
+
+                //AgregarComponenteAlArbol(ClonarRol(rolOrigen));
+
+
+
 
                 // Clonar el rol con todos sus hijos (permisos incluidos)
                 RolComposite clon = ClonarRol(rolOrigen);
-
-              
-
-
 
 
                 // Agregar al TreeView
@@ -400,16 +495,34 @@ namespace GestionTurnosMedicos
 
                 padreDestino.Agregar(clon);
 
-//                MessageBox.Show(
-//    $"Original Hash: {rolOrigen.GetHashCode()}\n" +
-//    $"Clon Hash: {clon.GetHashCode()}"
-//);
+                //                MessageBox.Show(
+                //    $"Original Hash: {rolOrigen.GetHashCode()}\n" +
+                //    $"Clon Hash: {clon.GetHashCode()}"
+                //);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private bool ContieneRol(RolComposite rol, int idBuscado)
         {
@@ -536,9 +649,7 @@ namespace GestionTurnosMedicos
                 nodoSeleccionado.Remove();
 
                 // Refrescar combo por si se desasignó un rol
-                CargarComboRolesExistentes();
-
-                CargarTreeView();
+                RefrescarVistas();
             }
             catch (Exception ex)
             {
@@ -554,23 +665,25 @@ namespace GestionTurnosMedicos
 
             string tipo = rolSeleccionado is RolComposite ? "Rol" : "Permiso";
 
-            string advertencia = rolSeleccionado is RolComposite
-                ? $"¿Eliminar completamente el Rol '{rolSeleccionado.Nombre}'?\nSe borrará de todas las relaciones."
-                : $"¿Eliminar completamente el Permiso '{rolSeleccionado.Nombre}'?\nSe borrará de todos los roles.";
+            //string advertencia = rolSeleccionado is RolComposite
+            //    ? $"¿Eliminar completamente el Rol '{rolSeleccionado.Nombre}'?\nSe borrará de todas las relaciones."
+            //    : $"¿Eliminar completamente el Permiso '{rolSeleccionado.Nombre}'?\nSe borrará de todos los roles.";
 
-            var confirmacion = MessageBox.Show(advertencia, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //var confirmacion = MessageBox.Show(advertencia, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (confirmacion != DialogResult.Yes)
+            if (!ConfirmarEliminacion($"¿Eliminar el Rol '{rolSeleccionado.Nombre}'?\nSe borrará de todas las relaciones."))
                 return;
+
+            //if (confirmacion != DialogResult.Yes)
+            //    return;
 
             try
             {
                 // Eliminar de la BD
                 bll_roles.EliminarRol(rolSeleccionado.Id);
                 
-                CargarTreeView();
-                CargarComboRolesExistentes();
-                
+                RefrescarVistas();
+
             }
             catch (Exception ex)
             {
@@ -585,6 +698,20 @@ namespace GestionTurnosMedicos
             Raiz();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void btnAgregarPermisos_Click(object sender, EventArgs e)
         {
             try
@@ -592,12 +719,6 @@ namespace GestionTurnosMedicos
                 if (treeViewRoles.SelectedNode == null)
                 {
                     MessageBox.Show("Seleccione un nodo destino.");
-                    return;
-                }
-
-                if (cboPermisos.SelectedItem == null)
-                {
-                    MessageBox.Show("Seleccione un permiso existente.");
                     return;
                 }
 
@@ -609,9 +730,19 @@ namespace GestionTurnosMedicos
                     return;
                 }
 
+
+
+                if (cboPermisos.SelectedItem == null)
+                {
+                    MessageBox.Show("Seleccione un permiso existente.");
+                    return;
+                }
+                //if (!ValidarNodoSeleccionado(out RolComposite padreDestino))
+                //    return;
+
                 Permiso permisoOrigen = cboPermisos.SelectedItem as Permiso;
 
-                // Evitar duplicados dentro del mismo subárbol
+                //Evitar duplicados dentro del mismo subárbol
                 if (ExisteHijo(treeViewRoles.SelectedNode, permisoOrigen.Nombre))
                 {
                     MessageBox.Show("Ya existe ese permiso en este rol.");
@@ -625,6 +756,10 @@ namespace GestionTurnosMedicos
                     Id = permisoOrigen.Id,
                     IdPermiso = permisoOrigen.IdPermiso
                 };
+
+
+                //AgregarComponenteAlArbol(clon);
+
 
                 padreDestino.Agregar(clon);
 
@@ -641,6 +776,31 @@ namespace GestionTurnosMedicos
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void groupBoxRE_Enter(object sender, EventArgs e)
         {
@@ -659,20 +819,18 @@ namespace GestionTurnosMedicos
                     return;
                 }
 
-                string advertencia = $"¿Eliminar completamente el Permiso '{permisoSeleccionado.Nombre}'?\nSe borrará de todos los roles.";
+                //string advertencia = $"¿Eliminar completamente el Permiso '{permisoSeleccionado.Nombre}'?\nSe borrará de todos los roles.";
 
-                var confirmacion = MessageBox.Show(advertencia, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                //var confirmacion = MessageBox.Show(advertencia, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                if (confirmacion != DialogResult.Yes)
+                //if (confirmacion != DialogResult.Yes)
+                //    return;
+                if (!ConfirmarEliminacion($"¿Eliminar el Permiso '{permisoSeleccionado.Nombre}'?\nSe borrará de todos los roles."))
                     return;
+
                 bll_roles.EliminarPermiso(permisoSeleccionado.Id);
 
-
-                CargarTreeView();
-
-                CargarComboRolesExistentes();
-
-                CargarPermisosAlCombo();
+                RefrescarVistas();
 
             }
             catch (Exception ex )
@@ -711,11 +869,7 @@ namespace GestionTurnosMedicos
 
             bll_roles.ModificarPermiso(permisoSeleccionado.Id, permisoSeleccionado.Nombre);
 
-            CargarTreeView();
-
-            CargarComboRolesExistentes();
-
-            CargarPermisosAlCombo();
+            RefrescarVistas();
 
         }
     }
