@@ -145,7 +145,6 @@ namespace DAL
            
         }
 
-
         public void ModificarPermiso(int idPermiso, string nombre)
         {
             using (SqlConnection conexion = conex.ObtenerConexion())
@@ -184,6 +183,23 @@ namespace DAL
                 cmdBorrarPermisos.ExecuteNonQuery();
             }
         }
+
+
+        // Traemos todos los permisos
+
+        public DataTable ObtenerTodosLosPermisos()
+        {
+            using (SqlConnection conexion = conex.ObtenerConexion())
+            {
+                conexion.Open();
+                SqlCommand cmdObtenerPermisos = new SqlCommand("Select * from Permisos", conexion);
+                SqlDataAdapter da = new SqlDataAdapter(cmdObtenerPermisos);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
 
         //Verificar que no exista el nombre del permiso
         public bool ExisteNombrePermiso(string nombre, int ? idExcluir =null)
@@ -354,7 +370,6 @@ namespace DAL
                 new SqlCommand("DELETE FROM Rol", conexion).ExecuteNonQuery();
             }
         }
-
 
 
     }

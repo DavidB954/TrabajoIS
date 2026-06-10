@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,6 +139,46 @@ namespace BLL
             return raiz;
         }
 
+        public List<Permiso> ObtenerPermisos()
+        {
+            var dtPermisos = dal_roles.ObtenerTodosLosPermisos();
 
+            var permisos = new List<Permiso>();
+
+            foreach (DataRow row in dtPermisos.Rows)
+            {
+                int id = Convert.ToInt32(row["IdPermisos"]);
+                permisos.Add(new Permiso
+                {
+                    Id = id,
+                    IdPermiso = id,
+                    Nombre = row["Nombre"].ToString()
+                });
+            }
+            return permisos;
+        }
+
+        public void EliminarComponente(RolComposite padre, Componente componente)
+        {
+            if (padre.Id == 0)
+            {
+                return;
+                //La raiz no tiene padre real, nada que desasignar.
+            }
+            if (componente is RolComposite rolHijo)
+            {
+                dal_roles.DesasignarRolHijo(padre.Id, rolHijo.Id);
+            }
+
+            if (componente is Permiso permiso)
+            {
+                dal_roles.DesasignarPermisoDeRol(padre.Id, permiso.Id);
+            }
+        }
+
+        public void EliminarRol(int id)
+        {
+            dal_roles.EliminarRol(id);
+        }
     }
 }
