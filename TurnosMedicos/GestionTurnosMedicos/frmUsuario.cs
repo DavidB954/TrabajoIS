@@ -22,6 +22,7 @@ namespace GestionTurnosMedicos
         }
         BLL_Usuario bll_usuario = new BLL_Usuario();
         BLL_Roles bll_Roles = new BLL_Roles();
+        BLL_HistorialCambios bll_historial = new BLL_HistorialCambios();
 
         private int? idSeleccionado = null;
 
@@ -30,8 +31,8 @@ namespace GestionTurnosMedicos
             ConfigurarGrid();
             CargarUsuarios();
             CargarUsuarioCbo();
-            CargarRoles();
-            CargarTreeViewUsuarios();
+            //CargarRoles();
+            GroupBoxHistorial.Visible = false;
         }
 
 
@@ -54,12 +55,24 @@ namespace GestionTurnosMedicos
             idSeleccionado = null;
         }
 
+        private bool _cargandoCombo = false;
+
         private void CargarUsuarioCbo()
         {
+
+            _cargandoCombo = true; // ← bloquear el evento
+
             cboUsuario.DataSource = bll_usuario.ListaUsuarios();
 
             cboUsuario.DisplayMember = "NombreApellido";
             cboUsuario.ValueMember = "IdUsuario";
+            _cargandoCombo = false; // ← faltaba esto
+
+            // Cargar todo para el primer usuario al iniciar
+            CargarCboRolesDelUsuario();
+            CargarHistorial();
+            CargarTreeViewUsuarios();
+
 
         }
 
@@ -97,7 +110,7 @@ namespace GestionTurnosMedicos
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == null || string.IsNullOrEmpty(txtPassword.Text))
+            if (idSeleccionado == null || string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 MessageBox.Show("Por favor seleccione el usuario a modificar y asegúrese de ingresar una contraseña");
                 return;
@@ -118,7 +131,7 @@ namespace GestionTurnosMedicos
                 bll_usuario.ModificarUsuario(Usuario);
 
                 CargarUsuarios();
-
+                CargarHistorial();
                 LimpiarCampos();
             }            
         }
@@ -138,6 +151,7 @@ namespace GestionTurnosMedicos
 
                 CargarUsuarios();
                 LimpiarCampos();
+                CargarHistorial();
             }
             catch (Exception)
             {
@@ -162,6 +176,7 @@ namespace GestionTurnosMedicos
                 bll_usuario.EliminarUsuario(id);
                 CargarUsuarios();
                 LimpiarCampos();
+                CargarHistorial();
             }
         }
 
@@ -229,6 +244,15 @@ namespace GestionTurnosMedicos
 
                 TreeNode nodoSeleccionado = treeViewUsuarios.SelectedNode;
 
+   //             MessageBox.Show(
+   //    $"Nodo: {nodoSeleccionado.Text}\n" +
+   //    $"Tag nodo: {nodoSeleccionado.Tag?.GetType().Name}\n" +
+   //    $"Padre: {nodoSeleccionado.Parent?.Text}\n" +
+   //    $"Tag padre: {nodoSeleccionado.Parent?.Tag?.GetType().Name}"
+   //);
+
+
+
                 // Tiene que ser un Rol (hijo directo de un usuario)
                 // El padre tiene que tener Tag de BE_Usuario
                 if (nodoSeleccionado.Parent == null ||
@@ -269,6 +293,131 @@ namespace GestionTurnosMedicos
             {
                 MessageBox.Show("Error al quitar rol: " + ex.Message);
             }
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            GroupBoxHistorial.Visible = true;
+            CargarHistorial();            
+        }
+        private void CargarHistorial()
+        {
+            if (cboUsuario.SelectedValue == null)
+                return;
+            BE_Usuario usuarioSeleccionado = cboUsuario.SelectedItem as BE_Usuario;
+            if (usuarioSeleccionado == null)
+                return;
+
+
+            int idUsuario = usuarioSeleccionado.IdUsuario;
+
+            DataTable historial = bll_historial.ObtenerHistorial("Usuario", idUsuario);
+
+            dgvHistorial.DataSource = historial;
+
+            // Renombrar columnas para que se vea prolijo
+            dgvHistorial.Columns["FechaCambio"].HeaderText = "Fecha";
+            dgvHistorial.Columns["Usuario"].HeaderText = "Modificado por";
+            dgvHistorial.Columns["Accion"].HeaderText = "Acción";
+            dgvHistorial.Columns["Campo"].HeaderText = "Campo";
+            dgvHistorial.Columns["ValorAnterior"].HeaderText = "Valor anterior";
+            dgvHistorial.Columns["ValorNuevo"].HeaderText = "Valor nuevo";
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+            if (dgvHistorial.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un punto del historial para restaurar.");
+                return;
+            }
+
+            // Fecha del registro seleccionado en la grilla
+            DateTime fechaSeleccionada = Convert.ToDateTime(
+                dgvHistorial.SelectedRows[0].Cells["FechaCambio"].Value);
+
+            int idUsuario = Convert.ToInt32(cboUsuario.SelectedValue);
+
+            var confirmacion = MessageBox.Show(
+                $"¿Restaurar el estado del usuario al {fechaSeleccionada:dd/MM/yyyy HH:mm}?",
+                "Confirmar restauración",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmacion != DialogResult.Yes)
+                return;
+
+            try
+            {
+                // Recomponer el estado anterior
+                BE_Usuario usuarioRestaurado = bll_historial.RecomponerEstado(idUsuario, fechaSeleccionada);
+
+                // Confirmar al usuario qué se va a restaurar
+                string detalle = $"Se restaurará:\n" +
+                                 $"Nombre: {usuarioRestaurado.Nombre}\n" +
+                                 $"Apellido: {usuarioRestaurado.Apellido}\n" +
+                                 $"Email: {usuarioRestaurado.Email}\n" +
+                                 $"Activo: {usuarioRestaurado.Activo}";
+
+                if (MessageBox.Show(detalle + "\n\n¿Confirmar?", "Estado a restaurar",
+                    MessageBoxButtons.YesNo) != DialogResult.Yes)
+                    return;
+
+                // Guardar el estado restaurado — esto también registra el cambio en el historial
+                bll_usuario.ModificarUsuario(usuarioRestaurado);
+
+                MessageBox.Show("Estado restaurado correctamente.");
+
+                CargarHistorial();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al restaurar: " + ex.Message);
+            }
+        }
+
+        private void cboUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_cargandoCombo)
+                return; // ← ignorar mientras se carga
+
+
+            if (cboUsuario.SelectedItem == null)
+                return;
+
+            // Cargar roles del usuario seleccionado en cboRoles
+            //CargarCboRolesDelUsuario();
+
+            // Cargar historial del usuario seleccionado en la grilla
+            CargarHistorial();
+
+            // Refrescar el TreeView enfocado en ese usuario
+            CargarTreeViewUsuarios();
+        }
+
+        private void CargarCboRolesDelUsuario()
+        {
+            try
+            {
+                cboRoles.DataSource = null;
+
+                BE_Usuario usuarioSeleccionado = cboUsuario.SelectedItem as BE_Usuario;
+                if (usuarioSeleccionado == null)
+                    return;
+
+                int idUsuario = usuarioSeleccionado.IdUsuario;
+
+                List<RolComposite> roles = bll_Roles.ObtenerRolesDeUsuario(idUsuario);
+
+                cboRoles.DataSource = roles;
+                cboRoles.DisplayMember = "Nombre";
+                cboRoles.ValueMember = "Id";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

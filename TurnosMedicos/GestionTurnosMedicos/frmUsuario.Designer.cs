@@ -50,10 +50,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.treeViewUsuarios = new System.Windows.Forms.TreeView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnHistorial = new System.Windows.Forms.Button();
+            this.GroupBoxHistorial = new System.Windows.Forms.GroupBox();
+            this.dgvHistorial = new System.Windows.Forms.DataGridView();
+            this.btnRestaurar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.GroupBoxHistorial.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -78,7 +84,7 @@
             // 
             this.btnAgregar.Image = global::GestionTurnosMedicos.Properties.Resources.Nuevo;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(30, 256);
+            this.btnAgregar.Location = new System.Drawing.Point(8, 256);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(101, 35);
             this.btnAgregar.TabIndex = 5;
@@ -90,7 +96,7 @@
             // 
             this.btnEliminar.Image = global::GestionTurnosMedicos.Properties.Resources.Delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(313, 256);
+            this.btnEliminar.Location = new System.Drawing.Point(222, 256);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(101, 35);
             this.btnEliminar.TabIndex = 8;
@@ -103,10 +109,10 @@
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.Location = new System.Drawing.Point(23, 474);
+            this.dgvUsuarios.Location = new System.Drawing.Point(12, 365);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
-            this.dgvUsuarios.Size = new System.Drawing.Size(631, 215);
+            this.dgvUsuarios.Size = new System.Drawing.Size(635, 199);
             this.dgvUsuarios.TabIndex = 5;
             this.dgvUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellClick);
             // 
@@ -162,7 +168,7 @@
             // 
             this.btnModificar.Image = global::GestionTurnosMedicos.Properties.Resources.Edit;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(173, 256);
+            this.btnModificar.Location = new System.Drawing.Point(115, 256);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(101, 35);
             this.btnModificar.TabIndex = 6;
@@ -172,6 +178,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnHistorial);
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
@@ -251,6 +258,7 @@
             this.cboUsuario.Name = "cboUsuario";
             this.cboUsuario.Size = new System.Drawing.Size(158, 28);
             this.cboUsuario.TabIndex = 1;
+            this.cboUsuario.SelectedIndexChanged += new System.EventHandler(this.cboUsuario_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -279,11 +287,52 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Roles de Usuarios";
             // 
+            // btnHistorial
+            // 
+            this.btnHistorial.Location = new System.Drawing.Point(329, 256);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(108, 35);
+            this.btnHistorial.TabIndex = 10;
+            this.btnHistorial.Text = "Historial";
+            this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
+            // 
+            // GroupBoxHistorial
+            // 
+            this.GroupBoxHistorial.Controls.Add(this.btnRestaurar);
+            this.GroupBoxHistorial.Controls.Add(this.dgvHistorial);
+            this.GroupBoxHistorial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxHistorial.Location = new System.Drawing.Point(13, 571);
+            this.GroupBoxHistorial.Name = "GroupBoxHistorial";
+            this.GroupBoxHistorial.Size = new System.Drawing.Size(870, 211);
+            this.GroupBoxHistorial.TabIndex = 17;
+            this.GroupBoxHistorial.TabStop = false;
+            this.GroupBoxHistorial.Text = "Historial";
+            // 
+            // dgvHistorial
+            // 
+            this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHistorial.Location = new System.Drawing.Point(16, 26);
+            this.dgvHistorial.Name = "dgvHistorial";
+            this.dgvHistorial.Size = new System.Drawing.Size(618, 168);
+            this.dgvHistorial.TabIndex = 0;
+            // 
+            // btnRestaurar
+            // 
+            this.btnRestaurar.Location = new System.Drawing.Point(680, 161);
+            this.btnRestaurar.Name = "btnRestaurar";
+            this.btnRestaurar.Size = new System.Drawing.Size(170, 33);
+            this.btnRestaurar.TabIndex = 1;
+            this.btnRestaurar.Text = "Restaurar";
+            this.btnRestaurar.UseVisualStyleBackColor = true;
+            this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
+            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1426, 818);
+            this.Controls.Add(this.GroupBoxHistorial);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.groupBox2);
@@ -297,6 +346,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.GroupBoxHistorial.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,5 +376,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TreeView treeViewUsuarios;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnHistorial;
+        private System.Windows.Forms.GroupBox GroupBoxHistorial;
+        private System.Windows.Forms.Button btnRestaurar;
+        private System.Windows.Forms.DataGridView dgvHistorial;
     }
 }
