@@ -33,21 +33,30 @@ namespace BLL
 
         public string CalcularDVV()
         {
-            List<BE_Usuario> ListaUsuario = dal_usuario.ListaUsuario();
-
-            StringBuilder concatenacion = new StringBuilder();
-
-            foreach (var usuario in ListaUsuario)
+            try
             {
-                string activo = usuario.Activo ? "1" : "0";
+                List<BE_Usuario> ListaUsuario = dal_usuario.ListaUsuario();
 
-                string dvhRecalculado = HashHelper.GenerarHash(
-                    $"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{activo}"
-                );
-                concatenacion.Append(dvhRecalculado);
+                StringBuilder concatenacion = new StringBuilder();
+
+                foreach (var usuario in ListaUsuario)
+                {
+                    string activo = usuario.Activo ? "1" : "0";
+
+                    string dvhRecalculado = HashHelper.GenerarHash(
+                        $"{usuario.Nombre}|{usuario.Apellido}|{usuario.Email}|{usuario.HashPassword}|{usuario.IntentosFallidos}|{activo}"
+                    );
+                    concatenacion.Append(dvhRecalculado);
+                }
+
+                return HashHelper.GenerarHash(concatenacion.ToString());
             }
+            catch (Exception ex)
+            {
 
-            return HashHelper.GenerarHash(concatenacion.ToString());
+                throw new ArgumentException(ex.Message);
+            }
+           
         }
 
         public void GenerarBackUp(string rutaBackup)

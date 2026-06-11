@@ -105,29 +105,6 @@ namespace GestionTurnosMedicos
             treeViewRoles.SelectedNode.Nodes.Add(nodoNuevo);
             treeViewRoles.ExpandAll();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public class TipoItem
         {
             public int ID
