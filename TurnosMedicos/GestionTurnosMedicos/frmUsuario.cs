@@ -31,9 +31,23 @@ namespace GestionTurnosMedicos
             ConfigurarGrid();
             CargarUsuarios();
             CargarUsuarioCbo();
-            //CargarRoles();
+            CargarRoles();
+            CargarComboEstado();
             GroupBoxHistorial.Visible = false;
         }
+
+
+
+
+
+        private void CargarComboEstado()
+        {
+            cboActivo.Items.Clear();
+            cboActivo.Items.Add("Activo");
+            cboActivo.Items.Add("Inactivo");
+            cboActivo.SelectedIndex = 0;
+        }
+
 
 
         private void ConfigurarGrid()
@@ -105,6 +119,8 @@ namespace GestionTurnosMedicos
                 txtNombreUsuario.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
                 txtApellido.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Apellido"].Value.ToString();  
                 txtEmail.Text = dgvUsuarios.Rows[e.RowIndex].Cells["Email"].Value.ToString();
+                bool activo = Convert.ToBoolean(dgvUsuarios.Rows[e.RowIndex].Cells["Activo"].Value);
+                cboActivo.SelectedItem = activo ? "Activo" : "Inactivo";
             }
         }
 
@@ -126,7 +142,7 @@ namespace GestionTurnosMedicos
                 Usuario.Apellido = txtApellido.Text;
                 Usuario.Email = txtEmail.Text;
                 Usuario.HashPassword = txtPassword.Text;
-                Usuario.Activo = Convert.ToBoolean(Fila.Cells["Activo"].Value);
+                Usuario.Activo = cboActivo.SelectedItem.ToString() == "Activo"; // ✅ desde el combo
 
                 bll_usuario.ModificarUsuario(Usuario);
 

@@ -148,19 +148,25 @@ namespace BLL
                 //Recalculamos el DVV
                 bll_dvv.ActualizarDVV("Usuario");
 
+                int? idEditor = Sesion.Instancia().UsuarioActual?.IdUsuario;
+            
+
                 // ✅ Registrar qué cambió
                 bll_historialCambios.RegistrarCambio(
                     usuarioAnterior,
                     usuarioNuevo,
-                    Sesion.Instancia().UsuarioActual.IdUsuario
+                   idEditor ?? 0
                 );
 
-                var sesion = Sesion.Instancia().UsuarioActual;
-                string modificadoPor = sesion != null ? sesion.Nombre : "SISTEMA";
-                int idModificador = sesion != null ? sesion.IdUsuario : 0;
+                //var sesion = Sesion.Instancia().UsuarioActual;
+                //string modificadoPor = sesion != null ? sesion.Nombre : "SISTEMA";
+
+                string modificadoPor = Sesion.Instancia().UsuarioActual?.Nombre ?? "SISTEMA";
+
+              //  int idModificador = sesion != null ? sesion.IdUsuario : 0;
 
                 bll_bitacora.RegistrarEvento(
-                    idModificador,
+                    idEditor,
                     AccionBitacora.USUARIO_MODIFICACION,
                     "USUARIO",
                     $"Se modifica al usuario: {usuarioNuevo.Nombre}, ID: {usuarioNuevo.IdUsuario}. Modificado por: {modificadoPor}"
@@ -168,7 +174,7 @@ namespace BLL
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en ModificarUsuario: " + ex.Message, ex);
+                throw new ArgumentException("Error en ModificarUsuario: " + ex.Message, ex);
             }
           
         }

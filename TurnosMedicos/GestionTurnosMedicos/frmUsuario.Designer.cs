@@ -41,6 +41,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnHistorial = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEliminarRol = new System.Windows.Forms.Button();
             this.btnAsignarRol = new System.Windows.Forms.Button();
@@ -50,10 +51,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.treeViewUsuarios = new System.Windows.Forms.TreeView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnHistorial = new System.Windows.Forms.Button();
             this.GroupBoxHistorial = new System.Windows.Forms.GroupBox();
-            this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.btnRestaurar = new System.Windows.Forms.Button();
+            this.dgvHistorial = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboActivo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 183);
+            this.label2.Location = new System.Drawing.Point(36, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 1;
@@ -84,7 +86,7 @@
             // 
             this.btnAgregar.Image = global::GestionTurnosMedicos.Properties.Resources.Nuevo;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(8, 256);
+            this.btnAgregar.Location = new System.Drawing.Point(8, 271);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(101, 35);
             this.btnAgregar.TabIndex = 5;
@@ -96,7 +98,7 @@
             // 
             this.btnEliminar.Image = global::GestionTurnosMedicos.Properties.Resources.Delete;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(222, 256);
+            this.btnEliminar.Location = new System.Drawing.Point(222, 271);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(101, 35);
             this.btnEliminar.TabIndex = 8;
@@ -125,7 +127,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(157, 179);
+            this.txtPassword.Location = new System.Drawing.Point(157, 173);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(181, 26);
@@ -134,7 +136,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 85);
+            this.label3.Location = new System.Drawing.Point(36, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 8;
@@ -143,7 +145,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 135);
+            this.label4.Location = new System.Drawing.Point(36, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 9;
@@ -151,14 +153,14 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(157, 81);
+            this.txtApellido.Location = new System.Drawing.Point(157, 74);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(181, 26);
             this.txtApellido.TabIndex = 2;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(157, 131);
+            this.txtEmail.Location = new System.Drawing.Point(157, 124);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(181, 26);
             this.txtEmail.TabIndex = 3;
@@ -168,7 +170,7 @@
             // 
             this.btnModificar.Image = global::GestionTurnosMedicos.Properties.Resources.Edit;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(115, 256);
+            this.btnModificar.Location = new System.Drawing.Point(115, 271);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(101, 35);
             this.btnModificar.TabIndex = 6;
@@ -178,6 +180,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboActivo);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.btnHistorial);
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.label1);
@@ -197,6 +201,16 @@
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Usuarios";
+            // 
+            // btnHistorial
+            // 
+            this.btnHistorial.Location = new System.Drawing.Point(329, 271);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(108, 35);
+            this.btnHistorial.TabIndex = 10;
+            this.btnHistorial.Text = "Historial";
+            this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // groupBox2
             // 
@@ -287,16 +301,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Roles de Usuarios";
             // 
-            // btnHistorial
-            // 
-            this.btnHistorial.Location = new System.Drawing.Point(329, 256);
-            this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(108, 35);
-            this.btnHistorial.TabIndex = 10;
-            this.btnHistorial.Text = "Historial";
-            this.btnHistorial.UseVisualStyleBackColor = true;
-            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
-            // 
             // GroupBoxHistorial
             // 
             this.GroupBoxHistorial.Controls.Add(this.btnRestaurar);
@@ -309,14 +313,6 @@
             this.GroupBoxHistorial.TabStop = false;
             this.GroupBoxHistorial.Text = "Historial";
             // 
-            // dgvHistorial
-            // 
-            this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHistorial.Location = new System.Drawing.Point(16, 26);
-            this.dgvHistorial.Name = "dgvHistorial";
-            this.dgvHistorial.Size = new System.Drawing.Size(618, 168);
-            this.dgvHistorial.TabIndex = 0;
-            // 
             // btnRestaurar
             // 
             this.btnRestaurar.Location = new System.Drawing.Point(680, 161);
@@ -326,6 +322,31 @@
             this.btnRestaurar.Text = "Restaurar";
             this.btnRestaurar.UseVisualStyleBackColor = true;
             this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
+            // 
+            // dgvHistorial
+            // 
+            this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHistorial.Location = new System.Drawing.Point(16, 26);
+            this.dgvHistorial.Name = "dgvHistorial";
+            this.dgvHistorial.Size = new System.Drawing.Size(618, 168);
+            this.dgvHistorial.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(36, 221);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Estado";
+            // 
+            // cboActivo
+            // 
+            this.cboActivo.FormattingEnabled = true;
+            this.cboActivo.Location = new System.Drawing.Point(157, 218);
+            this.cboActivo.Name = "cboActivo";
+            this.cboActivo.Size = new System.Drawing.Size(181, 28);
+            this.cboActivo.TabIndex = 12;
             // 
             // frmUsuario
             // 
@@ -380,5 +401,7 @@
         private System.Windows.Forms.GroupBox GroupBoxHistorial;
         private System.Windows.Forms.Button btnRestaurar;
         private System.Windows.Forms.DataGridView dgvHistorial;
+        private System.Windows.Forms.ComboBox cboActivo;
+        private System.Windows.Forms.Label label7;
     }
 }
