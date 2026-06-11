@@ -10,6 +10,13 @@ namespace BE.Composite
     public class RolComposite : Componente
     {
         public List<Componente> hijos = new List<Componente>();
+        public override string ToString() => Nombre;
+        public string Descripcion { get; set; }
+        public bool EsReferencia
+        {
+            get;
+            set;
+        }
 
         public void Agregar(Componente componente) => hijos.Add(componente);
 

@@ -1,5 +1,6 @@
 ﻿using Servicios;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GestionTurnosMedicos
@@ -50,7 +51,21 @@ namespace GestionTurnosMedicos
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Sesion.Instancia().CerrarSesion();
-            Application.Exit();
+            foreach (Form form in this.MdiChildren)
+                form.Close();
+
+            // Ocultar el MDI parent
+            frmLogin login = Application.OpenForms.OfType<frmLogin>().FirstOrDefault();
+            if (login != null)
+            {
+                login.Show();
+            }
+            else
+            {
+                new frmLogin().Show();
+            }
+
+            this.Close(); // ← cerrar el principal 
         }
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)

@@ -43,6 +43,7 @@ namespace GestionTurnosMedicos
 
                     frm.Show();
 
+
                     return;
                 }
 
@@ -57,6 +58,9 @@ namespace GestionTurnosMedicos
 
                     frmPrincipal formP = new frmPrincipal();
                     formP.Show();
+
+                    this.Hide();
+
                     LimpiarTextBox();
                 }
                 else

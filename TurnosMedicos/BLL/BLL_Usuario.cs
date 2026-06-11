@@ -13,6 +13,7 @@ namespace BLL
         DAL_Usuario dal_usuario = new DAL_Usuario();
         BLL_Bitacora bll_bitacora = new BLL_Bitacora();
         BLL_DVV bll_dvv = new BLL_DVV();
+        BLL_HistorialCambios bll_historialCambios = new BLL_HistorialCambios();
 
         //obtener usuario por id
 
@@ -122,6 +123,8 @@ namespace BLL
 
             //Recalculamos el DVV
             bll_dvv.ActualizarDVV("Usuario");
+            //Registramos el Alta
+            bll_historialCambios.RegistrarAlta("Usuario", usuario.IdUsuario, Sesion.Instancia().UsuarioActual.IdUsuario);
 
             //Mandamos a bitacora la creacion del nuevo usuario
 
@@ -129,33 +132,49 @@ namespace BLL
 
         }
 
-        public void ModificarUsuario(BE_Usuario usuario)
+        public void ModificarUsuario(BE_Usuario usuarioNuevo)
         {
             try
             {
-                usuario.HashPassword = HashHelper.GenerarHash(usuario.HashPassword);
+                BE_Usuario usuarioAnterior = dal_usuario.ObtenerUsuarioPorId(usuarioNuevo.IdUsuario);
 
-                CalcularDVH(usuario);
 
-                dal_usuario.ModificarUsuario(usuario);
+                usuarioNuevo.HashPassword = HashHelper.GenerarHash(usuarioNuevo.HashPassword);  
+
+                CalcularDVH(usuarioNuevo);
+
+                dal_usuario.ModificarUsuario(usuarioNuevo);
 
                 //Recalculamos el DVV
                 bll_dvv.ActualizarDVV("Usuario");
 
-                var sesion = Sesion.Instancia().UsuarioActual;
-                string modificadoPor = sesion != null ? sesion.Nombre : "SISTEMA";
-                int idModificador = sesion != null ? sesion.IdUsuario : 0;
+                int? idEditor = Sesion.Instancia().UsuarioActual?.IdUsuario;
+            
+
+                // ✅ Registrar qué cambió
+                bll_historialCambios.RegistrarCambio(
+                    usuarioAnterior,
+                    usuarioNuevo,
+                   idEditor ?? 0
+                );
+
+                //var sesion = Sesion.Instancia().UsuarioActual;
+                //string modificadoPor = sesion != null ? sesion.Nombre : "SISTEMA";
+
+                string modificadoPor = Sesion.Instancia().UsuarioActual?.Nombre ?? "SISTEMA";
+
+              //  int idModificador = sesion != null ? sesion.IdUsuario : 0;
 
                 bll_bitacora.RegistrarEvento(
-                    idModificador,
+                    idEditor,
                     AccionBitacora.USUARIO_MODIFICACION,
                     "USUARIO",
-                    $"Se modifica al usuario: {usuario.Nombre}, ID: {usuario.IdUsuario}. Modificado por: {modificadoPor}"
+                    $"Se modifica al usuario: {usuarioNuevo.Nombre}, ID: {usuarioNuevo.IdUsuario}. Modificado por: {modificadoPor}"
                 );
             }
             catch (Exception ex)
             {
-                Console.WriteLine( ex.ToString() );
+                throw new ArgumentException("Error en ModificarUsuario: " + ex.Message, ex);
             }
           
         }
@@ -166,6 +185,9 @@ namespace BLL
 
             //Recalculamos el DVV
             bll_dvv.ActualizarDVV("Usuario");
+
+            //Registramos la baja 
+            bll_historialCambios.RegistrarBaja("Usuario", id, Sesion.Instancia().UsuarioActual.IdUsuario);
 
             //Mandamos a bitacora la eliminacion del usuario
             bll_bitacora.RegistrarEvento(Sesion.Instancia().UsuarioActual.IdUsuario, AccionBitacora.USUARIO_BAJA, "USUARIO", $"El Usuario {Sesion.Instancia().UsuarioActual.Nombre}, da de baja al Usuario con ID: {id}");

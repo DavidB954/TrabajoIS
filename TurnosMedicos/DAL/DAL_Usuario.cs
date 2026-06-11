@@ -47,7 +47,6 @@ namespace DAL
         }
 
 
-
         //Verificamos que existe el mail del Usuario y devolvemos un objeto Usuario con la contraseña hasheada para poder compararla luego.
 
         public BE_Usuario ObtenerUsuarioPorEmail(string email)
